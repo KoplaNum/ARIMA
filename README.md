@@ -1,11 +1,21 @@
-# ARIMA / SARIMA lite-C Function Reference
+# ARIMA / SARIMA lite-C Library
 
-Professional GitHub reference for the documented ARIMA / SARIMA lite-C API. This version uses a conservative Markdown-safe math subset.
+Lightweight ARIMA / SARIMA library implemented in lite-C, published with a mathematical reference for the documented API.
 
-## Coverage
+## Repository Contents
 
-- Documented library functions covered: **227**
+- `src/litec/`: source implementation files and shared type definitions
+- `README.md`: publication-ready function reference with mathematical forms
+- `LICENSE`: MIT license
+
+## Source Coverage
+
+- Documented library functions covered in the reference: **227**
 - Source path base: `src/litec/`
+
+## Function Reference
+
+The remainder of this document is the full mathematical and API reference for the documented lite-C library.
 
 ## Module Index
 
