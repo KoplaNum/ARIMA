@@ -350,7 +350,9 @@ var* aa_alloc_vars(int Count)
 
 **Mathematical form**
 
+$$
 x \in R^{n},, x_i=0,\ i=0,\ldots,n-1
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -378,7 +380,9 @@ void aa_clear_arima_work(ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 W_i <- 0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -406,7 +410,9 @@ void aa_copy_vars(vars Dst,vars Src,int N)
 
 **Mathematical form**
 
+$$
 d_i <- s_i,, i=0,\ldots,N-1
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -436,7 +442,9 @@ void aa_free_vars(var* Ptr)
 
 **Mathematical form**
 
+$$
 free(x)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -464,7 +472,9 @@ int aa_prepare_arima_work(ARIMA_WORK* Work,int N,int MaxP,int MaxQ,int MaxSP,int
 
 **Mathematical form**
 
+$$
 cap(W)\ge(N,p,q,P,Q,H)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -498,7 +508,9 @@ void aa_shift_vars(vars Data,var NewValue,int N)
 
 **Mathematical form**
 
+$$
 x_i <- x_{i-1},\ i=N-1,\ldots,1;, x_0 <- v
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -528,7 +540,9 @@ void aa_zero_vars(vars Data,int N)
 
 **Mathematical form**
 
+$$
 x_i <- 0,, i=0,\ldots,N-1
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -557,7 +571,9 @@ void copy_arima_model(ARIMA_MODEL* Dst,ARIMA_MODEL* Src)
 
 **Mathematical form**
 
+$$
 M_{dst} <- M_{src}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -586,7 +602,9 @@ void free_arima_model(ARIMA_MODEL* Model)
 
 **Mathematical form**
 
+$$
 \forall a\in\{\phi,\vartheta,\Phi,\Theta,\epsilon\}: free(a)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -614,7 +632,9 @@ void free_arima_work(ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 \forall w_i\in W: free(w_i)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -642,7 +662,9 @@ void init_arima_model(ARIMA_MODEL* Model)
 
 **Mathematical form**
 
+$$
 M <- 0,, p=d=q=P=D=Q=m=0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -670,7 +692,9 @@ void init_arima_work(ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 W <- 0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -698,7 +722,9 @@ void reset_arima_model(ARIMA_MODEL* Model)
 
 **Mathematical form**
 
+$$
 M_{scores}<-inf,, M_{status}<- 0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -733,7 +759,9 @@ var aa_abs(var X)
 
 **Mathematical form**
 
+$$
 | Parameter | Type | Symbol / role | Description |
+$$
 |---|---|---|---|
 | `X` | `var` | $X_t$ | Exogenous regressor matrix or vector. |
 
@@ -759,7 +787,9 @@ int aa_argmax(vars Data,int N)
 
 **Mathematical form**
 
+$$
 argmax_i y_i
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -788,7 +818,9 @@ int aa_argmin(vars Data,int N)
 
 **Mathematical form**
 
+$$
 argmin_i y_i
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -817,7 +849,9 @@ var aa_correlation(vars X,vars Y,int N)
 
 **Mathematical form**
 
+$$
 \rho_{xy}=\frac{cov(x,y)}{s_xs_y}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -847,7 +881,9 @@ var aa_covariance(vars X,vars Y,int N)
 
 **Mathematical form**
 
+$$
 cov(x,y)=\frac{1}{N}\sum_{t=0}^{N-1}(x_t-\bar x)(y_t-\bar y)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -877,7 +913,9 @@ void aa_demean(vars Data,int N,vars Out)
 
 **Mathematical form**
 
+$$
 z_t=y_t-\bar y
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -907,7 +945,9 @@ var aa_max(vars Data,int N)
 
 **Mathematical form**
 
+$$
 \max_i y_i
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -936,7 +976,9 @@ int aa_max_int(int A,int B)
 
 **Mathematical form**
 
+$$
 \max(A,B)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -965,7 +1007,9 @@ var aa_mean(vars Data,int N)
 
 **Mathematical form**
 
+$$
 \bar y=\frac{1}{N}\sum_{t=0}^{N-1}y_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -994,7 +1038,9 @@ var aa_min(vars Data,int N)
 
 **Mathematical form**
 
+$$
 \min_i y_i
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1023,7 +1069,9 @@ int aa_min_int(int A,int B)
 
 **Mathematical form**
 
+$$
 \min(A,B)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1052,7 +1100,9 @@ void aa_normalize_minmax(vars Data,int N,vars Out)
 
 **Mathematical form**
 
+$$
 z_t=\frac{y_t-\min(y)}{\max(y)-\min(y)}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1082,7 +1132,9 @@ var aa_safe_div(var A,var B)
 
 **Mathematical form**
 
+$$
 \frac{a}{b^*},, b^*=b if |b|>\varepsilon, \varepsilon otherwise
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1111,7 +1163,9 @@ var aa_safe_log(var X)
 
 **Mathematical form**
 
+$$
 \log(x^\*),, x^\*=\max(x,\varepsilon)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1139,7 +1193,9 @@ var aa_safe_sqrt(var X)
 
 **Mathematical form**
 
+$$
 \sqrt{x^\*},, x^\*=\max(x,0)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1167,7 +1223,9 @@ var aa_square(var X)
 
 **Mathematical form**
 
+$$
 x^2
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1195,7 +1253,9 @@ void aa_standardize(vars Data,int N,vars Out)
 
 **Mathematical form**
 
+$$
 z_t=\frac{y_t-\bar y}{s}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1225,7 +1285,9 @@ var aa_stddev(vars Data,int N)
 
 **Mathematical form**
 
+$$
 s=\sqrt{\frac{1}{N}\sum_{t=0}^{N-1}(y_t-\bar y)^2}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1254,7 +1316,9 @@ var aa_sum(vars Data,int N)
 
 **Mathematical form**
 
+$$
 S=\sum_{t=0}^{N-1}y_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1283,7 +1347,9 @@ var aa_variance(vars Data,int N)
 
 **Mathematical form**
 
+$$
 s^2=\frac{1}{N}\sum_{t=0}^{N-1}(y_t-\bar y)^2
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1319,7 +1385,9 @@ void aa_clip_outliers(vars Series,int N,var Lower,var Upper)
 
 **Mathematical form**
 
+$$
 y_t <- \min(\max(y_t,L),U)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1350,7 +1418,9 @@ int aa_count_invalid_values(vars Series,int N)
 
 **Mathematical form**
 
+$$
 C=\sum_t I(invalid(y_t)\ne0)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1379,7 +1449,9 @@ void aa_fill_missing_forward(vars Series,int N)
 
 **Mathematical form**
 
+$$
 y_t<- y_{t-1}, when y_t is invalid
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1408,7 +1480,9 @@ void aa_fill_missing_mean(vars Series,int N)
 
 **Mathematical form**
 
+$$
 y_t<- \bar y_{valid}, when y_t is invalid
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1437,7 +1511,9 @@ int aa_has_invalid_values(vars Series,int N)
 
 **Mathematical form**
 
+$$
 exists t:invalid(y_t)\ne0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1466,7 +1542,9 @@ void aa_limit_returns(vars Series,int N,var MaxAbsReturn)
 
 **Mathematical form**
 
+$$
 $r_t=\frac{y_t}{y_{t-1}}-1,, 
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1496,7 +1574,9 @@ int aa_remove_invalid_values(vars In,int N,vars Out)
 
 **Mathematical form**
 
+$$
 z_j=y_t\ for valid y_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1526,7 +1606,9 @@ void aa_replace_zero_prices(vars Series,int N,var Replacement)
 
 **Mathematical form**
 
+$$
 y_t<- r, when y_t\le 0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1556,7 +1638,9 @@ int aa_validate_price_series(vars Close,int N)
 
 **Mathematical form**
 
+$$
 \forall t:\ y_t>0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1585,7 +1669,9 @@ int aa_validate_series(vars Series,int N)
 
 **Mathematical form**
 
+$$
 \forall t: y_t\in R,\ N>N_{\min}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1614,7 +1700,9 @@ void aa_winsorize_series(vars Series,int N,var Percentile)
 
 **Mathematical form**
 
+$$
 y_t <- \min(\max(y_t,Q_\alpha),Q_{1-\alpha})
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1651,7 +1739,9 @@ var aa_boxcox_lambda(vars Series,int N)
 
 **Mathematical form**
 
+$$
 \lambda^\*=\arg\max_\lambda \ell(\lambda)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1680,7 +1770,9 @@ void aa_boxcox_transform(vars Series,int N,var Lambda,vars Out)
 
 **Mathematical form**
 
+$$
 z_t=(y_t^{\lambda}-1)/\lambda if \lambda\ne 0, \log(y_t) if \lambda=0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1711,7 +1803,9 @@ void aa_difference_once(vars Series,int N,vars Out)
 
 **Mathematical form**
 
+$$
 \Delta y_t=y_t-y_{t-1}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1741,7 +1835,9 @@ int aa_difference_series(int D,vars Close,int N,vars Diff)
 
 **Mathematical form**
 
+$$
 z_t=(1-B)^D y_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1772,7 +1868,9 @@ void aa_difference_twice(vars Series,int N,vars Out)
 
 **Mathematical form**
 
+$$
 \Delta^2 y_t=y_t-2y_{t-1}+y_{t-2}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1802,7 +1900,9 @@ void aa_inverse_boxcox_transform(vars Series,int N,var Lambda,vars Out)
 
 **Mathematical form**
 
+$$
 y_t=(\lambda z_t+1)^{1/\lambda} if \lambda\ne 0, \exp(z_t) if \lambda=0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1833,7 +1933,9 @@ void aa_inverse_difference(var LastPrice,vars DiffForecast,int H,int D,vars Out)
 
 **Mathematical form**
 
+$$
 \hat y_{T+h}=\hat y_{T+h-1}+\widehat{\Delta y}_{T+h}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1865,7 +1967,9 @@ void aa_inverse_difference_path(vars Original,int N,vars DiffForecast,int H,int 
 
 **Mathematical form**
 
+$$
 \hat y_{T+h}=integrate_D(\widehat{\Delta^D y}_{T+h})
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1898,7 +2002,9 @@ void aa_inverse_log_transform(vars Series,int N,vars Out)
 
 **Mathematical form**
 
+$$
 y_t=\exp(z_t)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1928,7 +2034,9 @@ void aa_inverse_return_forecast(var LastPrice,vars ReturnForecast,int H,vars Pri
 
 **Mathematical form**
 
+$$
 \hat y_{T+h}=\hat y_{T+h-1}(1+\hat r_h)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1959,7 +2067,9 @@ void aa_inverse_seasonal_difference(vars Original,int N,vars Forecast,int H,int 
 
 **Mathematical form**
 
+$$
 \hat y_{T+h}=\hat z_{T+h}+y_{T+h-m}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -1996,7 +2106,9 @@ void aa_log_transform(vars Series,int N,vars Out)
 
 **Mathematical form**
 
+$$
 z_t=\log(y_t)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2026,7 +2138,9 @@ void aa_return_transform(vars Close,int N,vars Returns)
 
 **Mathematical form**
 
+$$
 r_t=\frac{y_t}{y_{t-1}}-1
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2056,7 +2170,9 @@ void aa_seasonal_difference_once(vars Series,int N,int M,vars Out)
 
 **Mathematical form**
 
+$$
 \Delta_m y_t=y_t-y_{t-m}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2087,7 +2203,9 @@ int aa_seasonal_difference_series(vars Series,int N,int D,int M,vars Out)
 
 **Mathematical form**
 
+$$
 z_t=(1-B^m)^D y_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2129,7 +2247,9 @@ var aa_adf_pvalue_approx(var Statistic,int N)
 
 **Mathematical form**
 
+$$
 p\approx F_{ADF}(\tau,N)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2158,7 +2278,9 @@ var aa_adf_statistic(vars Series,int N,int Lag)
 
 **Mathematical form**
 
+$$
 \Delta y_t=\alpha+\beta t+\gamma y_{t-1}+\sum_{i=1}^{L}\psi_i\Delta y_{t-i}+\epsilon_t,, \tau=\frac{\hat\gamma}{SE(\hat\gamma)}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2188,7 +2310,9 @@ int aa_adf_test(vars Series,int N,int Lag,var Alpha)
 
 **Mathematical form**
 
+$$
 I(p<\alpha)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2219,7 +2343,9 @@ int aa_calculate_d(vars Series,int N)
 
 **Mathematical form**
 
+$$
 d=\arg\min_{d\in\{0,1,2\}}Var(\Delta^d y)\ under heuristic rules
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2248,7 +2374,9 @@ int aa_calculate_D(vars Series,int N,int SeasonalPeriod)
 
 **Mathematical form**
 
+$$
 D=\arg\min_{D\in\{0,1\}}Var((1-B^m)^D y)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2281,7 +2409,9 @@ int aa_is_stationary(vars Series,int N)
 
 **Mathematical form**
 
+$$
 stationary=I(ADF\ reject) and I(KPSS\ not\ reject)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2310,7 +2440,9 @@ var aa_kpss_pvalue_approx(var Statistic,int N)
 
 **Mathematical form**
 
+$$
 p\approx F_{KPSS}(\eta,N)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2339,7 +2471,9 @@ var aa_kpss_statistic(vars Series,int N,int Lag)
 
 **Mathematical form**
 
+$$
 \eta=\frac{1}{N^2\hat\sigma^2}\sum_{t=1}^{N}S_t^2,, S_t=\sum_{i=1}^{t}e_i
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2369,7 +2503,9 @@ int aa_kpss_test(vars Series,int N,int Lag,var Alpha)
 
 **Mathematical form**
 
+$$
 I(p>\alpha)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2400,7 +2536,9 @@ int aa_ndiffs(vars Series,int N,int MaxD)
 
 **Mathematical form**
 
+$$
 d=\min\{k: \Delta^k y\ is\ stationary\}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2430,7 +2568,9 @@ int aa_ndiffs_heuristic(vars Series,int N,int MaxD)
 
 **Mathematical form**
 
+$$
 d=\min\{k:\Delta^k y\ appears\ stationary\}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2460,7 +2600,9 @@ int aa_nsdiffs(vars Series,int N,int MaxD,int SeasonalPeriod)
 
 **Mathematical form**
 
+$$
 D=\min\{k: (1-B^m)^k y\ is\ seasonally\ stationary\}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2494,7 +2636,9 @@ int aa_nsdiffs_heuristic(vars Series,int N,int MaxD,int M)
 
 **Mathematical form**
 
+$$
 D=\min\{k:(1-B^m)^k y\ appears\ seasonally\ stationary\}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2525,7 +2669,9 @@ var aa_pp_pvalue_approx(var Statistic,int N)
 
 **Mathematical form**
 
+$$
 p\approx F_{PP}(Z_\tau,N)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2554,7 +2700,9 @@ var aa_pp_statistic(vars Series,int N,int Lag)
 
 **Mathematical form**
 
+$$
 Z_\tau=\tau_{\gamma}+Newey-West\ correction
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2584,7 +2732,9 @@ int aa_pp_test(vars Series,int N,int Lag,var Alpha)
 
 **Mathematical form**
 
+$$
 I(p<\alpha)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2622,7 +2772,9 @@ void aa_acf(vars Series,int N,int MaxLag,vars OutACF)
 
 **Mathematical form**
 
+$$
 \rho_k,, k=0,\ldots,K
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2653,7 +2805,9 @@ int aa_acf_cutoff_lag(vars ACF,int MaxLag,var Threshold)
 
 **Mathematical form**
 
+$$
 $k^\*=\min\{k:
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2683,7 +2837,9 @@ var aa_autocorrelation(vars Series,int N,int Lag)
 
 **Mathematical form**
 
+$$
 \rho_k=\frac{\gamma_k}{\gamma_0}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2713,7 +2869,9 @@ var aa_autocovariance(vars Series,int N,int Lag)
 
 **Mathematical form**
 
+$$
 \gamma_k=\frac{1}{N}\sum_{t=k}^{N-1}(y_t-\bar y)(y_{t-k}-\bar y)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2743,7 +2901,9 @@ void aa_initial_ar_from_pacf(vars PACF,int MaxP,vars ArOut)
 
 **Mathematical form**
 
+$$
 \phi_i^{(0)}\approx\alpha_i
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2773,7 +2933,9 @@ void aa_initial_ma_from_acf(vars ACF,int MaxQ,vars MaOut)
 
 **Mathematical form**
 
+$$
 \vartheta_j^{(0)}\approx\rho_j
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2803,7 +2965,9 @@ void aa_levinson_durbin(vars ACF,int Order,vars Phi,vars Work)
 
 **Mathematical form**
 
+$$
 \phi_{k,k}=\frac{\rho_k-\sum_{j=1}^{k-1}\phi_{k-1,j}\rho_{k-j}}{1-\sum_{j=1}^{k-1}\phi_{k-1,j}\rho_j}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2834,7 +2998,9 @@ void aa_pacf(vars Series,int N,int MaxLag,vars OutPACF)
 
 **Mathematical form**
 
+$$
 \alpha_k=\phi_{k,k}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2865,7 +3031,9 @@ int aa_pacf_cutoff_lag(vars PACF,int MaxLag,var Threshold)
 
 **Mathematical form**
 
+$$
 $k^\*=\min\{k:
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2895,7 +3063,9 @@ void aa_yule_walker(vars Series,int N,int Order,vars Phi)
 
 **Mathematical form**
 
+$$
 \Gamma_p\phi=\gamma_p
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2933,7 +3103,9 @@ var aa_ar_root_modulus(vars Ar,int P)
 
 **Mathematical form**
 
+$$
 $\min
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2962,7 +3134,9 @@ void aa_clamp_coefficients(vars Coeff,int N,var MinValue,var MaxValue)
 
 **Mathematical form**
 
+$$
 c_i<- \min(\max(c_i,L),U)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -2993,7 +3167,9 @@ int aa_coefficients_are_valid(vars Coeff,int N)
 
 **Mathematical form**
 
+$$
 I(\forall i: c_i\in R)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3022,7 +3198,9 @@ void aa_enforce_invertibility(vars Ma,int Q)
 
 **Mathematical form**
 
+$$
 \vartheta <- Proj_I(\vartheta)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3051,7 +3229,9 @@ void aa_enforce_stationarity(vars Ar,int P)
 
 **Mathematical form**
 
+$$
 \phi <- Proj_S(\phi)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3080,7 +3260,9 @@ int aa_is_invertible_ma(vars Ma,int Q)
 
 **Mathematical form**
 
+$$
 $\min_i
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3109,7 +3291,9 @@ int aa_is_stationary_ar(vars Ar,int P)
 
 **Mathematical form**
 
+$$
 $\min_i
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3138,7 +3322,9 @@ var aa_ma_root_modulus(vars Ma,int Q)
 
 **Mathematical form**
 
+$$
 $\min
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3167,7 +3353,9 @@ var aa_min_root_modulus(vars Coeff,int N)
 
 **Mathematical form**
 
+$$
 $r_{\min}=\min_i
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3203,7 +3391,9 @@ int aa_arima_fit(int P,int D,int Q,vars Close,int N,ARIMA_WORK* Work,ARIMA_MODEL
 
 **Mathematical form**
 
+$$
 z_t=(1-B)^d y_t,, z_t ~ ARMA(p,q)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3237,7 +3427,9 @@ int aa_arma_fit(int P,int Q,vars Series,int N,var* OutSSE,var* OutC,vars ArOut,v
 
 **Mathematical form**
 
+$$
 y_t=c+\sum_{i=1}^{p}\phi_i y_{t-i}+\sum_{j=1}^{q}\vartheta_j\epsilon_{t-j}+\epsilon_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3272,7 +3464,9 @@ int aa_css_fit(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 CSS(\theta)=\sum_{t=t_0}^{N-1}\epsilon_t(\theta)^2
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3303,7 +3497,9 @@ int aa_exact_mle_fit(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 \theta^\*=\arg\max_\theta \ell_{exact}(\theta)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3334,7 +3530,9 @@ var aa_kalman_loglikelihood(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Wor
 
 **Mathematical form**
 
+$$
 \ell=-\frac{1}{2}\sum_t[\log(2\pi F_t)+\frac{v_t^2}{F_t}]
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3365,7 +3563,9 @@ int aa_mle_fit(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 \ell(\theta)=-\frac{N}{2}[\log(2\pi)+\log(\sigma^2)+1]
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3396,7 +3596,9 @@ int aa_sarima_fit(int P,int D,int Q,int SP,int SD,int SQ,int M,vars Close,int N,
 
 **Mathematical form**
 
+$$
 \Phi(B^m)\phi(B)(1-B)^d(1-B^m)^D y_t=c+\Theta(B^m)\vartheta(B)\epsilon_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3441,7 +3643,9 @@ int aa_adam_fit(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 m_k=\beta_1m_{k-1}+(1-\beta_1)g_k,, v_k=\beta_2v_{k-1}+(1-\beta_2)g_k^2,, \theta_{k+1}=\theta_k-\eta\frac{\hat m_k}{\sqrt{\hat v_k}+\epsilon}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3472,7 +3676,9 @@ int aa_bfgs_fit(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 H_{k+1}=(I-\rho s y^\top)H_k(I-\rho y s^\top)+\rho ss^\top
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3503,7 +3709,9 @@ int aa_check_convergence(var PrevScore,var NewScore,vars Grad,int GradN,var Tole
 
 **Mathematical form**
 
+$$
 | Parameter | Type | Symbol / role | Description |
+$$
 |---|---|---|---|
 | `PrevScore` | `var` | $PrevScore$ | Routine-specific input or output argument. |
 | `NewScore` | `var` | $NewScore$ | Routine-specific input or output argument. |
@@ -3533,7 +3741,9 @@ void aa_compute_gradient(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work,v
 
 **Mathematical form**
 
+$$
 g_i=\frac{\partial L}{\partial\theta_i}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3565,7 +3775,9 @@ void aa_compute_hessian(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work,va
 
 **Mathematical form**
 
+$$
 H_{ij}=\frac{\partial^2L}{\partial\theta_i\partial\theta_j}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3597,7 +3809,9 @@ int aa_gradient_descent_fit(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Wor
 
 **Mathematical form**
 
+$$
 \theta_{k+1}=\theta_k-\eta\nabla L(\theta_k)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3628,7 +3842,9 @@ var aa_gradient_norm(vars Grad,int N)
 
 **Mathematical form**
 
+$$
 $\
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3657,7 +3873,9 @@ int aa_lbfgs_fit(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 \theta_{k+1}=\theta_k-\alpha H_k g_k,, H_k\ from\ last\ m\ (s,y)\ pairs
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3688,7 +3906,9 @@ int aa_nelder_mead_fit(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 x_r=\bar x+\alpha(\bar x-x_h)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3719,7 +3939,9 @@ void aa_optimizer_report(ARIMA_MODEL* Model)
 
 **Mathematical form**
 
+$$
 R=\{iterations, converged, score, \ldots\}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3747,7 +3969,9 @@ void aa_set_optimizer_defaults()
 
 **Mathematical form**
 
+$$
 \eta,\tau,K_{\max}<- defaults
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3775,7 +3999,9 @@ void aa_set_optimizer_learning_rate(var Eta)
 
 **Mathematical form**
 
+$$
 \eta <- \eta_0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3803,7 +4029,9 @@ void aa_set_optimizer_max_iter(int MaxIter)
 
 **Mathematical form**
 
+$$
 K_{\max}<- K
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3831,7 +4059,9 @@ void aa_set_optimizer_tolerance(var Tolerance)
 
 **Mathematical form**
 
+$$
 \tau <- T
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3866,7 +4096,9 @@ var aa_aic_score(int N,var LogLik,int K)
 
 **Mathematical form**
 
+$$
 AIC=2K-2\ell
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3896,7 +4128,9 @@ var aa_aicc_score(int N,var SSE,int P,int Q)
 
 **Mathematical form**
 
+$$
 AICc=N\log(SSE/N)+2K+\frac{2K(K+1)}{N-K-1}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3927,7 +4161,9 @@ var aa_aicc_score_general(int N,var LogLik,int K)
 
 **Mathematical form**
 
+$$
 AICc=AIC+\frac{2K(K+1)}{N-K-1}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3957,7 +4193,9 @@ var aa_bic_score(int N,var LogLik,int K)
 
 **Mathematical form**
 
+$$
 BIC=K\log N-2\ell
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -3987,7 +4225,9 @@ int aa_compare_ic(var ScoreA,var ScoreB)
 
 **Mathematical form**
 
+$$
 I(S_A<S_B)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4016,7 +4256,9 @@ var aa_conditional_loglikelihood(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK
 
 **Mathematical form**
 
+$$
 $\ell_c(\theta)=\sum_{t=t_0}^{N-1}\log f(y_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4047,7 +4289,9 @@ var aa_exact_loglikelihood(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work
 
 **Mathematical form**
 
+$$
 \ell_e(\theta)=\sum_t \log f(v_t,F_t)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4078,7 +4322,9 @@ var aa_hqic_score(int N,var LogLik,int K)
 
 **Mathematical form**
 
+$$
 HQIC=2K\log(\log N)-2\ell
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4108,7 +4354,9 @@ var aa_loglikelihood(vars Residuals,int N,var Sigma2)
 
 **Mathematical form**
 
+$$
 \ell=-\frac{N}{2}[\log(2\pi)+\log(\sigma^2)]-\frac{1}{2\sigma^2}\sum_t e_t^2
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4138,7 +4386,9 @@ var aa_model_score(ARIMA_MODEL* Model,int ScoreMode)
 
 **Mathematical form**
 
+$$
 S(M)\in\{AIC, AICc, BIC, HQIC\}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4174,7 +4424,9 @@ int aa_auto_arima_search(vars closeSeries,int sampleCount,int maxArOrder,int max
 
 **Mathematical form**
 
+$$
 (p^*,d^*,q^*) = \arg\min_{(p,d,q)\in G} IC(p,d,q)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4209,7 +4461,9 @@ int aa_candidate_exists(ARIMA_CANDIDATE* List,int Count,ARIMA_CANDIDATE* Candida
 
 **Mathematical form**
 
+$$
 I(exists i:C_i=C)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4239,7 +4493,9 @@ void aa_expand_candidate_models(ARIMA_CANDIDATE* Current,ARIMA_CANDIDATE* List,i
 
 **Mathematical form**
 
+$$
 C<- C U N(C)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4269,7 +4525,9 @@ int aa_fallback_model(vars Close,int N,ARIMA_MODEL* Model)
 
 **Mathematical form**
 
+$$
 \hat y_{T+1}=y_T\ mathrm{or}\ \bar y
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4299,7 +4557,9 @@ int aa_grid_search_arima(vars Close,int N,int MaxP,int MaxD,int MaxQ,int ScoreMo
 
 **Mathematical form**
 
+$$
 M^\*=\arg\min_{p,d,q} IC(M_{p,d,q})
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4334,7 +4594,9 @@ void aa_init_candidate(ARIMA_CANDIDATE* Candidate)
 
 **Mathematical form**
 
+$$
 C<- 0,, S<- inf
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4362,7 +4624,9 @@ int aa_select_best_model(ARIMA_CANDIDATE* List,int Count)
 
 **Mathematical form**
 
+$$
 i^\*=\arg\min_i S_i
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4391,7 +4655,9 @@ void aa_set_candidate(ARIMA_CANDIDATE* Candidate,int P,int D,int Q,int SP,int SD
 
 **Mathematical form**
 
+$$
 C=(p,d,q,P,D,Q,m)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4426,7 +4692,9 @@ int aa_stepwise_auto_arima(vars Close,int N,int MaxP,int MaxD,int MaxQ,int Score
 
 **Mathematical form**
 
+$$
 M_{k+1}=\arg\min_{M\in N(M_k)} IC(M)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4461,7 +4729,9 @@ void aa_try_neighbor_models(ARIMA_CANDIDATE* Current,ARIMA_CANDIDATE* List,int* 
 
 **Mathematical form**
 
+$$
 N(C)=\{C\pm e_p,C\pm e_q,C\pm e_P,C\pm e_Q,\ldots\}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4491,7 +4761,9 @@ int aa_validate_candidate_model(ARIMA_CANDIDATE* Candidate)
 
 **Mathematical form**
 
+$$
 0\le p\le p_{\max},\ 0\le d\le d_{\max},\ldots
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4526,7 +4798,9 @@ int aa_auto_sarima_search(vars Close,int N,int MaxP,int MaxD,int MaxQ,int MaxSP,
 
 **Mathematical form**
 
+$$
 M^\*=\arg\min_{p,d,q,P,D,Q}IC(M)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4565,7 +4839,9 @@ int aa_detect_seasonal_period(vars Series,int N,int MinM,int MaxM)
 
 **Mathematical form**
 
+$$
 $m^\*=\arg\max_{m\in[M_{\min},M_{\max}]}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4596,7 +4872,9 @@ int aa_sarima_forecast_multi_step(ARIMA_MODEL* Model,vars Close,int N,int H,ARIM
 
 **Mathematical form**
 
+$$
 $\hat y_{T+h}=E[y_{T+h}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4629,7 +4907,9 @@ int aa_sarima_forecast_one_step(ARIMA_MODEL* Model,vars Close,int N,ARIMA_WORK* 
 
 **Mathematical form**
 
+$$
 \hat y_{T+1}=E[y_{T+1}| F_T,M]
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4661,7 +4941,9 @@ var aa_seasonal_acf_score(vars Series,int N,int M)
 
 **Mathematical form**
 
+$$
 $S_m=
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4691,7 +4973,9 @@ var aa_seasonal_strength(vars Series,int N,int M)
 
 **Mathematical form**
 
+$$
 F_s=\max(0,1-\frac{Var(R_t)}{Var(S_t+R_t)})
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4721,7 +5005,9 @@ int aa_stepwise_auto_sarima(vars Close,int N,int MaxP,int MaxD,int MaxQ,int MaxS
 
 **Mathematical form**
 
+$$
 M_{k+1}=\arg\min_{M\in N_s(M_k)} IC(M)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4767,7 +5053,9 @@ int aa_arimax_fit(int P,int D,int Q,vars Close,vars* X,int N,int XCols,ARIMA_WOR
 
 **Mathematical form**
 
+$$
 z_t=c+x_t^\top\beta+\sum_i\phi_i z_{t-i}+\sum_j\vartheta_j e_{t-j}+e_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4803,7 +5091,9 @@ int aa_arimax_forecast(ARIMA_MODEL* Model,vars Close,vars* FutureX,int N,int H,A
 
 **Mathematical form**
 
+$$
 \hat y_{T+h}=f(F_T,X_{T+h};\hat\theta)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4837,7 +5127,9 @@ int aa_prepare_exogenous_matrix(vars* X,int Rows,int Cols,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 X\in R^{N\times k}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4868,7 +5160,9 @@ int aa_regression_fit(vars Y,vars* X,int Rows,int Cols,vars BetaOut)
 
 **Mathematical form**
 
+$$
 \hat\beta=(X^\top X)^{-1}X^\top y
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4900,7 +5194,9 @@ var aa_regression_predict(vars XRow,vars Beta,int Cols)
 
 **Mathematical form**
 
+$$
 \hat y=x^\top\hat\beta
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4930,7 +5226,9 @@ int aa_sarimax_fit(int P,int D,int Q,int SP,int SD,int SQ,int M,vars Close,vars*
 
 **Mathematical form**
 
+$$
 \Phi(B^m)\phi(B)(1-B)^d(1-B^m)^D y_t=c+x_t^\top\beta+\Theta(B^m)\vartheta(B)e_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -4970,7 +5268,9 @@ int aa_sarimax_forecast(ARIMA_MODEL* Model,vars Close,vars* FutureX,int N,int H,
 
 **Mathematical form**
 
+$$
 \hat y_{T+h}=f_s(F_T,X_{T+h};\hat\theta)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5004,7 +5304,9 @@ int aa_validate_exogenous_data(vars* X,int Rows,int Cols)
 
 **Mathematical form**
 
+$$
 \forall t,j: X_{t,j}\in R
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5041,7 +5343,9 @@ void aa_backtransform_forecast(vars Forecast,int H,int TransformMode,var Lambda,
 
 **Mathematical form**
 
+$$
 \hat y=T^{-1}(\hat z)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5073,7 +5377,9 @@ void aa_bias_adjusted_backtransform(vars Forecast,vars SE,int H,int TransformMod
 
 **Mathematical form**
 
+$$
 E[e^X]=e^{\mu+\frac{1}{2}\sigma^2}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5106,7 +5412,9 @@ int aa_forecast_bands(ARIMA_MODEL* Model,vars ForecastPath,int H,var Alpha,ARIMA
 
 **Mathematical form**
 
+$$
 L_h=\hat y_h-zSE_h,, U_h=\hat y_h+zSE_h
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5140,7 +5448,9 @@ void aa_forecast_confidence_interval(var Forecast,var SE,var Alpha,var* Lower,va
 
 **Mathematical form**
 
+$$
 [\hat y_h-z_{1-\alpha/2}SE_h,\ \hat y_h+z_{1-\alpha/2}SE_h]
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5172,7 +5482,9 @@ int aa_forecast_multi_step(ARIMA_MODEL* Model,vars Series,int N,int H,ARIMA_WORK
 
 **Mathematical form**
 
+$$
 \hat z_{T+h}=c+\sum_i\phi_i \tilde z_{T+h-i}+\sum_j\vartheta_j \tilde e_{T+h-j}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5205,7 +5517,9 @@ var aa_forecast_one_step(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 \hat z_{T+1}=c+\sum_i\phi_i z_{T+1-i}+\sum_j\vartheta_j e_{T+1-j}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5236,7 +5550,9 @@ var aa_forecast_standard_error(ARIMA_MODEL* Model,int Horizon)
 
 **Mathematical form**
 
+$$
 SE_h=\sqrt{Var(\hat e_{T+h})}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5265,7 +5581,9 @@ var aa_forecast_variance(ARIMA_MODEL* Model,int Horizon)
 
 **Mathematical form**
 
+$$
 Var(\hat e_{T+h})=\sigma^2\sum_{i=0}^{h-1}\psi_i^2
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5294,7 +5612,9 @@ void aa_integrate_forecast(vars Original,int N,vars DiffForecast,int H,int D,var
 
 **Mathematical form**
 
+$$
 \hat y=integrate_d(\hat z)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5334,7 +5654,9 @@ var aa_arch_lm_pvalue(var Stat,int Df)
 
 **Mathematical form**
 
+$$
 p=1-F_{\chi^2_L}(LM)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5363,7 +5685,9 @@ var aa_arch_lm_stat(vars Residuals,int N,int Lag)
 
 **Mathematical form**
 
+$$
 e_t^2=\alpha_0+\sum_{i=1}^{L}\alpha_i e_{t-i}^2+u_t,, LM=N R^2
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5393,7 +5717,9 @@ int aa_arch_lm_test(vars Residuals,int N,int Lag,var Alpha)
 
 **Mathematical form**
 
+$$
 I(p>\alpha)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5424,7 +5750,9 @@ var aa_box_pierce_pvalue(var Stat,int Df)
 
 **Mathematical form**
 
+$$
 p=1-F_{\chi^2_{\nu}}(Q_{BP})
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5453,7 +5781,9 @@ var aa_box_pierce_stat(vars Residuals,int N,int MaxLag)
 
 **Mathematical form**
 
+$$
 Q_{BP}=N\sum_{k=1}^{h}\rho_k^2
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5483,7 +5813,9 @@ int aa_box_pierce_test(vars Residuals,int N,int MaxLag,var Alpha)
 
 **Mathematical form**
 
+$$
 I(p>\alpha)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5514,7 +5846,9 @@ void aa_compute_residuals(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work,
 
 **Mathematical form**
 
+$$
 e_t=y_t-\hat y_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5546,7 +5880,9 @@ void aa_diagnostic_report(ARIMA_MODEL* Model,vars Series,int N,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 D=\{\bar e,s_e^2,\rho_k,Q,DW,JB,ARCH\}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5577,7 +5913,9 @@ var aa_durbin_watson_test(vars Residuals,int N)
 
 **Mathematical form**
 
+$$
 DW=\frac{\sum_{t=1}^{N-1}(e_t-e_{t-1})^2}{\sum_{t=0}^{N-1}e_t^2}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5606,7 +5944,9 @@ var aa_jarque_bera_pvalue(var Stat)
 
 **Mathematical form**
 
+$$
 p=1-F_{\chi^2_2}(JB)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5634,7 +5974,9 @@ var aa_jarque_bera_stat(vars Residuals,int N)
 
 **Mathematical form**
 
+$$
 JB=\frac{N}{6}(S^2+\frac{(K-3)^2}{4})
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5663,7 +6005,9 @@ int aa_jarque_bera_test(vars Residuals,int N,var Alpha)
 
 **Mathematical form**
 
+$$
 I(p>\alpha)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5693,7 +6037,9 @@ var aa_ljung_box_pvalue(var Stat,int Df)
 
 **Mathematical form**
 
+$$
 p=1-F_{\chi^2_{\nu}}(Q)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5722,7 +6068,9 @@ var aa_ljung_box_stat(vars Residuals,int N,int MaxLag)
 
 **Mathematical form**
 
+$$
 Q=N(N+2)\sum_{k=1}^{h}\frac{\rho_k^2}{N-k}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5752,7 +6100,9 @@ int aa_ljung_box_test(vars Residuals,int N,int MaxLag,var Alpha)
 
 **Mathematical form**
 
+$$
 I(p>\alpha)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5783,7 +6133,9 @@ void aa_residual_acf(vars Residuals,int N,int MaxLag,vars OutACF)
 
 **Mathematical form**
 
+$$
 \rho_k(e)=\frac{\gamma_k(e)}{\gamma_0(e)}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5814,7 +6166,9 @@ var aa_residual_mean(vars Residuals,int N)
 
 **Mathematical form**
 
+$$
 \bar e=\frac{1}{N}\sum_t e_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5843,7 +6197,9 @@ int aa_residual_normality_check(vars Residuals,int N)
 
 **Mathematical form**
 
+$$
 I(p_{JB}>\alpha)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5872,7 +6228,9 @@ var aa_residual_stddev(vars Residuals,int N)
 
 **Mathematical form**
 
+$$
 s_e=\sqrt{s_e^2}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5901,7 +6259,9 @@ var aa_residual_variance(vars Residuals,int N)
 
 **Mathematical form**
 
+$$
 s_e^2=\frac{1}{N}\sum_t(e_t-\bar e)^2
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5930,7 +6290,9 @@ int aa_residual_white_noise_check(vars Residuals,int N,int MaxLag)
 
 **Mathematical form**
 
+$$
 I(p_{LB}>\alpha)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5967,7 +6329,9 @@ int aa_load_model_from_file(ARIMA_MODEL* Model,string Filename,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 file -> M
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -5997,7 +6361,9 @@ void aa_print_coefficients(ARIMA_MODEL* Model)
 
 **Mathematical form**
 
+$$
 \{\phi_i,\vartheta_j,\Phi_i,\Theta_j,c\}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6025,7 +6391,9 @@ void aa_print_forecast_report(ARIMA_MODEL* Model,vars ForecastPath,int H)
 
 **Mathematical form**
 
+$$
 \{\hat y_h,L_h,U_h\}_{h=1}^{H}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6055,7 +6423,9 @@ void aa_print_model_summary(ARIMA_MODEL* Model)
 
 **Mathematical form**
 
+$$
 summary(M)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6083,7 +6453,9 @@ void aa_print_residual_diagnostics(ARIMA_MODEL* Model,vars Residuals,int N)
 
 **Mathematical form**
 
+$$
 D(e)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6113,7 +6485,9 @@ int aa_save_diagnostics_to_file(ARIMA_MODEL* Model,string Filename)
 
 **Mathematical form**
 
+$$
 D(M) -> file
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6142,7 +6516,9 @@ int aa_save_forecast_to_file(vars ForecastPath,int H,string Filename)
 
 **Mathematical form**
 
+$$
 \{\hat y_h\}_{h=1}^{H} -> file
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6172,7 +6548,9 @@ int aa_save_model_to_file(ARIMA_MODEL* Model,string Filename)
 
 **Mathematical form**
 
+$$
 M -> file
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6208,7 +6586,9 @@ int aa_cache_best_model(string AssetName,int BarPeriodValue,ARIMA_MODEL* Model)
 
 **Mathematical form**
 
+$$
 C[(asset,barperiod)]<- M^*
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6238,7 +6618,9 @@ void aa_clear_model_cache()
 
 **Mathematical form**
 
+$$
 C<- {}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6266,7 +6648,9 @@ void aa_init_model_cache()
 
 **Mathematical form**
 
+$$
 C<- {}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6294,7 +6678,9 @@ int aa_load_cached_model(string AssetName,int BarPeriodValue,ARIMA_MODEL* Model,
 
 **Mathematical form**
 
+$$
 M<- C[(asset,barperiod)]
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6325,7 +6711,9 @@ int aa_refit_best_model(vars Close,int N,ARIMA_MODEL* Model,ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 \hat\theta_{new}=\arg\min_{\theta}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6356,7 +6744,9 @@ int aa_reuse_previous_model(vars Close,int N,ARIMA_MODEL* Model,ARIMA_WORK* Work
 
 **Mathematical form**
 
+$$
 \hat y_{T+1}=f(y_{0:T};\hat\theta_{old})
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6387,7 +6777,9 @@ int aa_should_refit_model(int BarsSinceLastFit,int RefitInterval,var LastError,v
 
 **Mathematical form**
 
+$$
 $I(b\ge B_{\max}\ or \
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6425,7 +6817,9 @@ var aa_directional_accuracy(vars Actual,vars Forecast,int N)
 
 **Mathematical form**
 
+$$
 DA=\frac{1}{N-1}\sum_{t=1}^{N-1}I[sign(y_t-y_{t-1})=sign(\hat y_t-y_{t-1})]
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6455,7 +6849,9 @@ var aa_forecast_error_mae(vars Actual,vars Forecast,int N)
 
 **Mathematical form**
 
+$$
 $MAE=\frac{1}{N}\sum_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6485,7 +6881,9 @@ var aa_forecast_error_mape(vars Actual,vars Forecast,int N)
 
 **Mathematical form**
 
+$$
 $MAPE=\frac{100}{N}\sum_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6515,7 +6913,9 @@ var aa_forecast_error_mse(vars Actual,vars Forecast,int N)
 
 **Mathematical form**
 
+$$
 MSE=\frac{1}{N}\sum_t(y_t-\hat y_t)^2
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6545,7 +6945,9 @@ var aa_forecast_error_rmse(vars Actual,vars Forecast,int N)
 
 **Mathematical form**
 
+$$
 RMSE=\sqrt{MSE}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6575,7 +6977,9 @@ int aa_rolling_forecast_test(vars Series,int N,int Window,int Horizon,ARIMA_WORK
 
 **Mathematical form**
 
+$$
 $\hat y_{t+h
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6609,7 +7013,9 @@ void aa_train_test_split(vars Series,int N,var Train Ratio,vars Train,vars Test,
 
 **Mathematical form**
 
+$$
 N_{train}=\lfloor rN\rfloor,, N_{test}=N-N_{train}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6643,7 +7049,9 @@ int aa_walk_forward_arima(vars Series,int N,int Window,int Horizon,int RefitInte
 
 **Mathematical form**
 
+$$
 M_t=fit(y_{t-W+1:t}),, \hat y_{t+h}=f(M_t)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6684,7 +7092,9 @@ int aa_backtest_forecast_signal(vars Close,vars Forecast,int N,var Threshold,var
 
 **Mathematical form**
 
+$$
 s_t=g(y_t,\hat y_{t+1},\tau)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6716,7 +7126,9 @@ var aa_forecast_edge(var LastPrice,var ForecastPrice,var Cost)
 
 **Mathematical form**
 
+$$
 E=(\hat y-y_T)/y_T-c_{cost}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6746,7 +7158,9 @@ var aa_forecast_return(var LastPrice,var ForecastPrice)
 
 **Mathematical form**
 
+$$
 \hat r=\frac{\hat y_{T+1}-y_T}{y_T}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6775,7 +7189,9 @@ var aa_forecast_zscore(var Forecast,var ForecastSE,var LastPrice)
 
 **Mathematical form**
 
+$$
 z=\frac{\hat y-y_T}{SE}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6805,7 +7221,9 @@ var aa_position_size_from_confidence(var ForecastZ,var BaseLots)
 
 **Mathematical form**
 
+$$
 $Lots=BaseLots\cdot \min(
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6834,7 +7252,9 @@ var aa_position_size_from_forecast(var ForecastEdge,var RiskPerTrade,var StopDis
 
 **Mathematical form**
 
+$$
 $Lots=\frac{RiskPerTrade\cdot
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6864,7 +7284,9 @@ int aa_signal_from_confidence_band(var LastPrice,var Lower,var Upper)
 
 **Mathematical form**
 
+$$
 s=1\ mathrm{if}\ L>y_T,, s=-1\ mathrm{if}\ U<y_T,, 0\ mathrm{otherwise}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6894,7 +7316,9 @@ int aa_signal_from_directional_accuracy(var DirectionalAccuracy,var MinAccuracy)
 
 **Mathematical form**
 
+$$
 s=I(DA\ge DA_{\min})
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6923,7 +7347,9 @@ int aa_signal_from_forecast(var LastPrice,var ForecastPrice,var Threshold)
 
 **Mathematical form**
 
+$$
 s=1 if \hat r>\tau, s=-1 if \hat r<-\tau, 0 otherwise
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6960,7 +7386,9 @@ int aa_zorro_forecast_current_asset(int N,int MaxP,int MaxQ,var TickSize,ARIMA_W
 
 **Mathematical form**
 
+$$
 \hat y_{T+1}=AutoARIMA(Close,N)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -6993,7 +7421,9 @@ int aa_zorro_get_close_series(vars Close,int N)
 
 **Mathematical form**
 
+$$
 Close_i=priceClose(i)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7022,7 +7452,9 @@ void aa_zorro_plot_forecast(ARIMA_MODEL* Model)
 
 **Mathematical form**
 
+$$
 plot(\hat y_{T+1})
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7050,7 +7482,9 @@ void aa_zorro_plot_forecast_bands(vars ForecastPath,vars Lower,vars Upper,int H)
 
 **Mathematical form**
 
+$$
 plot(L_h),\ plot(U_h)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7081,7 +7515,9 @@ void aa_zorro_print_model(ARIMA_MODEL* Model)
 
 **Mathematical form**
 
+$$
 printf(M)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7109,7 +7545,9 @@ int aa_zorro_trade_from_forecast(ARIMA_MODEL* Model,var Threshold)
 
 **Mathematical form**
 
+$$
 enterLong/enterShort\ mathrm{from}\ s_t
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7146,7 +7584,9 @@ int aa_prepare_auto_arima_work(AUTO_ARIMA_WORK* Work,int N,int MaxP,int MaxQ)
 
 **Mathematical form**
 
+$$
 cap(W)\ge(N,MaxP,MaxQ)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7177,7 +7617,9 @@ var aa_round_to_tick_size(var Price,var TickSize)
 
 **Mathematical form**
 
+$$
 \hat y_{tick}=round(\hat y/\tau)\tau
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7206,7 +7648,9 @@ int auto_arima_forecast(vars Close,int N,var TickSize,int MaxP,int MaxQ,AUTO_ARI
 
 **Mathematical form**
 
+$$
 \hat y_{T+1}=AutoARIMA(y_{0:T})
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7239,7 +7683,9 @@ int auto_arima_forecast_with_work(vars Close,int N,var TickSize,int MaxP,int Max
 
 **Mathematical form**
 
+$$
 \hat y_{T+1}=AutoARIMA(y_{0:T};W)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7273,7 +7719,9 @@ void free_auto_arima_result(AUTO_ARIMA_RESULT* R)
 
 **Mathematical form**
 
+$$
 free(R.ar),free(R.ma)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7301,7 +7749,9 @@ void free_auto_arima_work(AUTO_ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 \forall w_i\in W:free(w_i)
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7329,7 +7779,9 @@ void init_auto_arima_result(AUTO_ARIMA_RESULT* R)
 
 **Mathematical form**
 
+$$
 R<- \{p=-1,q=-1,d=0,SSE=inf,AICc=inf\}
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7357,7 +7809,9 @@ void init_auto_arima_work(AUTO_ARIMA_WORK* Work)
 
 **Mathematical form**
 
+$$
 W<- 0
+$$
 
 | Parameter | Type | Symbol / role | Description |
 |---|---|---|---|
@@ -7383,7 +7837,9 @@ ARIMA_MODEL(...)
 
 **Mathematical form**
 
+$$
 \theta = \{p,d,q,P,D,Q,m,c,\mu,\phi,\vartheta,\Phi,\Theta,\epsilon,IC\}
+$$
 
 **Interpretation** 
 Create a struct that stores model orders, coefficients, residuals, likelihood scores, forecast output, and optimizer status. Use pointer fields for variable-size arrays.
@@ -7398,7 +7854,9 @@ ARIMA_WORK(...)
 
 **Mathematical form**
 
+$$
 W=\{temporary\ arrays\ used\ by\ fitting,\ forecasting,\ diagnostics\}
+$$
 
 **Interpretation** 
 Create one reusable work-memory struct. Allocate with `malloc()` once, reuse across model search, and release with `free()` at session end.
@@ -7413,7 +7871,9 @@ ARIMA_CANDIDATE(...)
 
 **Mathematical form**
 
+$$
 C_i=(p_i,d_i,q_i,P_i,D_i,Q_i,m_i,S_i)
+$$
 
 **Interpretation** 
 Store one candidate model and its score. Use arrays of candidates for grid or stepwise search.
