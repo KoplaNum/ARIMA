@@ -444,7 +444,7 @@ void aa_free_vars(var* Ptr)
 **Mathematical form**
 
 $$
-\operatorname{free}(x)
+free(x)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -474,7 +474,7 @@ int aa_prepare_arima_work(ARIMA_WORK* Work,int N,int MaxP,int MaxQ,int MaxSP,int
 **Mathematical form**
 
 $$
-\operatorname{cap}(W)\ge(N,p,q,P,Q,H)
+cap(W)\ge(N,p,q,P,Q,H)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -604,7 +604,7 @@ void free_arima_model(ARIMA_MODEL* Model)
 **Mathematical form**
 
 $$
-\forall a\in\{\phi,\vartheta,\Phi,\Theta,\epsilon\}: \operatorname{free}(a)
+\forall a\in\{\phi,\vartheta,\Phi,\Theta,\epsilon\}: free(a)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -634,7 +634,7 @@ void free_arima_work(ARIMA_WORK* Work)
 **Mathematical form**
 
 $$
-\forall w_i\in W: \operatorname{free}(w_i)
+\forall w_i\in W: free(w_i)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -792,7 +792,7 @@ int aa_argmax(vars Data,int N)
 **Mathematical form**
 
 $$
-\operatorname{argmax}_i y_i
+argmax_i y_i
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -823,7 +823,7 @@ int aa_argmin(vars Data,int N)
 **Mathematical form**
 
 $$
-\operatorname{argmin}_i y_i
+argmin_i y_i
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -854,7 +854,7 @@ var aa_correlation(vars X,vars Y,int N)
 **Mathematical form**
 
 $$
-\rho_{xy}=\frac{\operatorname{cov}(x,y)}{s_xs_y}
+\rho_{xy}=\frac{cov(x,y)}{s_xs_y}
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -886,7 +886,7 @@ var aa_covariance(vars X,vars Y,int N)
 **Mathematical form**
 
 $$
-\operatorname{cov}(x,y)=\frac{1}{N}\sum_{t=0}^{N-1}(x_t-\bar x)(y_t-\bar y)
+cov(x,y)=\frac{1}{N}\sum_{t=0}^{N-1}(x_t-\bar x)(y_t-\bar y)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -1424,7 +1424,7 @@ int aa_count_invalid_values(vars Series,int N)
 **Mathematical form**
 
 $$
-C=\sum_t I(\operatorname{invalid}(y_t)\ne0)
+C=\sum_t I(invalid(y_t)\ne0)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -1517,7 +1517,7 @@ int aa_has_invalid_values(vars Series,int N)
 **Mathematical form**
 
 $$
-\exists t:\operatorname{invalid}(y_t)\ne0
+\exists t:invalid(y_t)\ne0
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -1974,7 +1974,7 @@ void aa_inverse_difference_path(vars Original,int N,vars DiffForecast,int H,int 
 **Mathematical form**
 
 $$
-\hat y_{T+h}=\operatorname{integrate}_D(\widehat{\Delta^D y}_{T+h})
+\hat y_{T+h}=integrate_D(\widehat{\Delta^D y}_{T+h})
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -2351,7 +2351,7 @@ int aa_calculate_d(vars Series,int N)
 **Mathematical form**
 
 $$
-d=\arg\min_{d\in\{0,1,2\}}\operatorname{Var}(\Delta^d y)\ \text{under heuristic rules}
+d=\arg\min_{d\in\{0,1,2\}}Var(\Delta^d y)\ \text{under heuristic rules}
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -2382,7 +2382,7 @@ int aa_calculate_D(vars Series,int N,int SeasonalPeriod)
 **Mathematical form**
 
 $$
-D=\arg\min_{D\in\{0,1\}}\operatorname{Var}((1-B^m)^D y)
+D=\arg\min_{D\in\{0,1\}}Var((1-B^m)^D y)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -3402,7 +3402,7 @@ int aa_arima_fit(int P,int D,int Q,vars Close,int N,ARIMA_WORK* Work,ARIMA_MODEL
 **Mathematical form**
 
 $$
-z_t=(1-B)^d y_t,\quad z_t\sim\operatorname{ARMA}(p,q)
+z_t=(1-B)^d y_t,\quad z_t\simARMA(p,q)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -4990,7 +4990,7 @@ var aa_seasonal_strength(vars Series,int N,int M)
 **Mathematical form**
 
 $$
-F_s=\max(0,1-\frac{\operatorname{Var}(R_t)}{\operatorname{Var}(S_t+R_t)})
+F_s=\max(0,1-\frac{Var(R_t)}{Var(S_t+R_t)})
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -5569,7 +5569,7 @@ var aa_forecast_standard_error(ARIMA_MODEL* Model,int Horizon)
 **Mathematical form**
 
 $$
-SE_h=\sqrt{\operatorname{Var}(\hat e_{T+h})}
+SE_h=\sqrt{Var(\hat e_{T+h})}
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -5600,7 +5600,7 @@ var aa_forecast_variance(ARIMA_MODEL* Model,int Horizon)
 **Mathematical form**
 
 $$
-\operatorname{Var}(\hat e_{T+h})=\sigma^2\sum_{i=0}^{h-1}\psi_i^2
+Var(\hat e_{T+h})=\sigma^2\sum_{i=0}^{h-1}\psi_i^2
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -5631,7 +5631,7 @@ void aa_integrate_forecast(vars Original,int N,vars DiffForecast,int H,int D,var
 **Mathematical form**
 
 $$
-\hat y=\operatorname{integrate}_d(\hat z)
+\hat y=integrate_d(\hat z)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -6840,7 +6840,7 @@ var aa_directional_accuracy(vars Actual,vars Forecast,int N)
 **Mathematical form**
 
 $$
-DA=\frac{1}{N-1}\sum_{t=1}^{N-1}I[\operatorname{sign}(y_t-y_{t-1})=\operatorname{sign}(\hat y_t-y_{t-1})]
+DA=\frac{1}{N-1}\sum_{t=1}^{N-1}I[sign(y_t-y_{t-1})=sign(\hat y_t-y_{t-1})]
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -7072,7 +7072,7 @@ int aa_walk_forward_arima(vars Series,int N,int Window,int Horizon,int RefitInte
 **Mathematical form**
 
 $$
-M_t=\operatorname{fit}(y_{t-W+1:t}),\quad \hat y_{t+h}=f(M_t)
+M_t=fit(y_{t-W+1:t}),\quad \hat y_{t+h}=f(M_t)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -7446,7 +7446,7 @@ int aa_zorro_get_close_series(vars Close,int N)
 **Mathematical form**
 
 $$
-Close_i=\operatorname{priceClose}(i)
+Close_i=priceClose(i)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -7610,7 +7610,7 @@ int aa_prepare_auto_arima_work(AUTO_ARIMA_WORK* Work,int N,int MaxP,int MaxQ)
 **Mathematical form**
 
 $$
-\operatorname{cap}(W)\ge(N,MaxP,MaxQ)
+cap(W)\ge(N,MaxP,MaxQ)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -7643,7 +7643,7 @@ var aa_round_to_tick_size(var Price,var TickSize)
 **Mathematical form**
 
 $$
-\hat y_{\text{tick}}=\operatorname{round}\left(\frac{\hat y}{\tau}\right)\tau
+\hat y_{\text{tick}}=round\left(\frac{\hat y}{\tau}\right)\tau
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -7745,7 +7745,7 @@ void free_auto_arima_result(AUTO_ARIMA_RESULT* R)
 **Mathematical form**
 
 $$
-\operatorname{free}(R.ar),\operatorname{free}(R.ma)
+free(R.ar),free(R.ma)
 $$
 
 | Parameter | Type | Symbol / role | Description |
@@ -7775,7 +7775,7 @@ void free_auto_arima_work(AUTO_ARIMA_WORK* Work)
 **Mathematical form**
 
 $$
-\forall w_i\in W:\operatorname{free}(w_i)
+\forall w_i\in W:free(w_i)
 $$
 
 | Parameter | Type | Symbol / role | Description |
