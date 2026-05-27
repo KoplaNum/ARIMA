@@ -4,7 +4,7 @@ Professional GitHub reference for the documented ARIMA / SARIMA lite-C API. This
 
 ## Coverage
 
-- Documented library functions covered: **227**
+- Documented library functions covered: **219**
 - Source path base: `src/litec/`
 
 ## Module Index
@@ -25,24 +25,17 @@ Professional GitHub reference for the documented ARIMA / SARIMA lite-C API. This
 - [init_arima_work](#initarimawork)
 - [reset_arima_model](#resetarimamodel)
 
-### 2. Basic Math and Array Utilities (20)
+### 2. Basic Math and Array Utilities (13)
 
-- [aa_abs](#aaabs)
 - [aa_argmax](#aaargmax)
 - [aa_argmin](#aaargmin)
 - [aa_correlation](#aacorrelation)
 - [aa_covariance](#aacovariance)
 - [aa_demean](#aademean)
 - [aa_max](#aamax)
-- [aa_max_int](#aamaxint)
 - [aa_mean](#aamean)
 - [aa_min](#aamin)
-- [aa_min_int](#aaminint)
 - [aa_normalize_minmax](#aanormalizeminmax)
-- [aa_safe_div](#aasafediv)
-- [aa_safe_log](#aasafelog)
-- [aa_safe_sqrt](#aasafesqrt)
-- [aa_square](#aasquare)
 - [aa_standardize](#aastandardize)
 - [aa_stddev](#aastddev)
 - [aa_sum](#aasum)
@@ -288,10 +281,9 @@ Professional GitHub reference for the documented ARIMA / SARIMA lite-C API. This
 - [aa_zorro_print_model](#aazorroprintmodel)
 - [aa_zorro_trade_from_forecast](#aazorrotradefromforecast)
 
-### 21. Current AutoARIMA Compatibility Functions (8)
+### 21. Current AutoARIMA Compatibility Functions (7)
 
 - [aa_prepare_auto_arima_work](#aaprepareautoarimawork)
-- [aa_round_to_tick_size](#aaroundtoticksize)
 - [auto_arima_forecast](#autoarimaforecast)
 - [auto_arima_forecast_with_work](#autoarimaforecastwithwork)
 - [free_auto_arima_result](#freeautoarimaresult)
@@ -742,38 +734,6 @@ Reset scores/status and optionally zero coefficient arrays without freeing memor
 | Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
 |---|---|---|
 
-### aa_abs
-
-**Purpose** 
-Implements abs within the basic math and array utilities module.
-
-**Signature**
-
-```c
-var aa_abs(var X)
-```
-
-**Defined in** 
-`src/litec/aa_arima_math.c:137`
-
-**Mathematical form**
-
-$$
-|x|=x, x\ge0; ; -x, x<0
-$$
-
-**Parameters**
-
-| Parameter | Type | Symbol | Description |
-|---|---|---|---|
-| `X` | `var` | `X_t` | Exogenous regressor matrix or vector. |
-
-**Return value** 
-Scalar quantity defined by the mathematical form above.
-
-**Implementation note** 
-Use lite-C `abs()` for `var` or write an `if/else` wrapper.
-
 ### aa_argmax
 
 **Purpose** 
@@ -975,39 +935,6 @@ Scalar quantity defined by the mathematical form above.
 **Implementation note** 
 Initialize with `Data[0]`, loop and update.
 
-### aa_max_int
-
-**Purpose** 
-Implements max int within the basic math and array utilities module.
-
-**Signature**
-
-```c
-int aa_max_int(int A,int B)
-```
-
-**Defined in** 
-`src/litec/aa_arima_math.c:127`
-
-**Mathematical form**
-
-$$
-\max(A,B)
-$$
-
-**Parameters**
-
-| Parameter | Type | Symbol | Description |
-|---|---|---|---|
-| `A` | `int` | `A` | Routine-specific argument. |
-| `B` | `int` | `B` | Routine-specific argument. |
-
-**Return value** 
-Integer status, index, count, or decision code returned by the routine.
-
-**Implementation note** 
-Return `A` when `A > B`, otherwise `B`.
-
 ### aa_mean
 
 **Purpose** 
@@ -1074,39 +1001,6 @@ Scalar quantity defined by the mathematical form above.
 **Implementation note** 
 Initialize with `Data[0]`, loop and update.
 
-### aa_min_int
-
-**Purpose** 
-Implements min int within the basic math and array utilities module.
-
-**Signature**
-
-```c
-int aa_min_int(int A,int B)
-```
-
-**Defined in** 
-`src/litec/aa_arima_math.c:132`
-
-**Mathematical form**
-
-$$
-\min(A,B)
-$$
-
-**Parameters**
-
-| Parameter | Type | Symbol | Description |
-|---|---|---|---|
-| `A` | `int` | `A` | Routine-specific argument. |
-| `B` | `int` | `B` | Routine-specific argument. |
-
-**Return value** 
-Integer status, index, count, or decision code returned by the routine.
-
-**Implementation note** 
-Return `A` when `A < B`, otherwise `B`.
-
 ### aa_normalize_minmax
 
 **Purpose** 
@@ -1140,135 +1034,6 @@ No direct return value. Results are written into output parameters or mutable st
 
 **Implementation note** 
 Compute min/max; guard equal min/max; write output in 0..1 range.
-
-### aa_safe_div
-
-**Purpose** 
-Implements safe div within the basic math and array utilities module.
-
-**Signature**
-
-```c
-var aa_safe_div(var A,var B)
-```
-
-**Defined in** 
-`src/litec/aa_arima_math.c:147`
-
-**Mathematical form**
-
-$$
-\frac{a}{b^\*}, b^\*=b, |b|>\varepsilon; ; \varepsilon, otherwise
-$$
-
-**Parameters**
-
-| Parameter | Type | Symbol | Description |
-|---|---|---|---|
-| `A` | `var` | `A` | Routine-specific argument. |
-| `B` | `var` | `B` | Routine-specific argument. |
-
-**Return value** 
-Scalar quantity defined by the mathematical form above.
-
-**Implementation note** 
-Use `fix0(B)` or manual epsilon guard before division.
-
-### aa_safe_log
-
-**Purpose** 
-Implements safe log within the basic math and array utilities module.
-
-**Signature**
-
-```c
-var aa_safe_log(var X)
-```
-
-**Defined in** 
-`src/litec/aa_arima_math.c:152`
-
-**Mathematical form**
-
-$$
-\log(x^\*), x^\*=\max(x,\varepsilon)
-$$
-
-**Parameters**
-
-| Parameter | Type | Symbol | Description |
-|---|---|---|---|
-| `X` | `var` | `X_t` | Exogenous regressor matrix or vector. |
-
-**Return value** 
-Scalar quantity defined by the mathematical form above.
-
-**Implementation note** 
-Clamp input to a small positive epsilon before calling `log()`.
-
-### aa_safe_sqrt
-
-**Purpose** 
-Implements safe sqrt within the basic math and array utilities module.
-
-**Signature**
-
-```c
-var aa_safe_sqrt(var X)
-```
-
-**Defined in** 
-`src/litec/aa_arima_math.c:160`
-
-**Mathematical form**
-
-$$
-\sqrt{x^\*}, x^\*=\max(x,0)
-$$
-
-**Parameters**
-
-| Parameter | Type | Symbol | Description |
-|---|---|---|---|
-| `X` | `var` | `X_t` | Exogenous regressor matrix or vector. |
-
-**Return value** 
-Scalar quantity defined by the mathematical form above.
-
-**Implementation note** 
-Return `sqrt(max(0.,X))` or manual `if` guard.
-
-### aa_square
-
-**Purpose** 
-Implements square within the basic math and array utilities module.
-
-**Signature**
-
-```c
-var aa_square(var X)
-```
-
-**Defined in** 
-`src/litec/aa_arima_math.c:142`
-
-**Mathematical form**
-
-$$
-x^2
-$$
-
-**Parameters**
-
-| Parameter | Type | Symbol | Description |
-|---|---|---|---|
-| `X` | `var` | `X_t` | Exogenous regressor matrix or vector. |
-
-**Return value** 
-Scalar quantity defined by the mathematical form above.
-
-**Implementation note** 
-Return `X*X`; faster than `pow(X,2)`.
 
 ### aa_standardize
 
@@ -8005,39 +7770,6 @@ Integer status, index, count, or decision code returned by the routine.
 
 **Implementation note** 
 Ensure existing optimized work memory can hold current data and P/Q search sizes.
-
-### aa_round_to_tick_size
-
-**Purpose** 
-Implements round to tick size within the current autoarima compatibility functions module.
-
-**Signature**
-
-```c
-var aa_round_to_tick_size(var Price,var TickSize)
-```
-
-**Defined in** 
-`src/litec/aa_arima_platform.c:233`
-
-**Mathematical form**
-
-$$
-\hat y_{tick}=round\left(\frac{\hat y}{\tau}\right)\tau
-$$
-
-**Parameters**
-
-| Parameter | Type | Symbol | Description |
-|---|---|---|---|
-| `Price` | `var` | `Price` | Routine-specific argument. |
-| `TickSize` | `var` | `delta` | Minimum price increment. |
-
-**Return value** 
-Scalar quantity defined by the mathematical form above.
-
-**Implementation note** 
-Return original price if tick size is not positive; otherwise round to nearest tick.
 
 ### auto_arima_forecast
 
