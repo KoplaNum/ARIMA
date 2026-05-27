@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AutoAri Function Examples</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0b1020;
+      --panel: #121933;
+      --text: #e8ecff;
+      --muted: #aab4d6;
+      --line: #2a365e;
+      --accent: #7fb3ff;
+      --accent-2: #b8d4ff;
+      --code: #0e1429;
+    }
+    body {
+      margin: 0;
+      font: 16px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0a0f1f 0%, #101736 100%);
+      color: var(--text);
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 20px 72px;
+    }
+    h1, h2, h3 {
+      line-height: 1.2;
+    }
+    a {
+      color: var(--accent-2);
+    }
+    .hero, .panel, .fn {
+      background: rgba(18, 25, 51, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    }
+    .hero {
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .hero p, .panel p {
+      color: var(--muted);
+      margin: 8px 0;
+    }
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr 220px 220px;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #0a1024;
+      color: var(--text);
+      padding: 12px 14px;
+      font: inherit;
+      box-sizing: border-box;
+    }
+    .panel {
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+    .stats {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(10, 16, 36, 0.7);
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+    .fn {
+      padding: 18px 20px;
+    }
+    .fn h3 {
+      margin: 0 0 6px;
+      font-size: 22px;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 10px 0 14px;
+    }
+    .tag {
+      font-size: 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 10px;
+      color: var(--accent-2);
+      background: rgba(8, 13, 30, 0.75);
+    }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: var(--code);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      overflow-x: auto;
+    }
+    code {
+      font: 13px/1.45 Consolas, "SFMono-Regular", Menlo, monospace;
+    }
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    @media (max-width: 900px) {
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>AutoAri Function Examples</h1>
+      <p>Generated from the current <code>src/litec</code> package source files so the function list stays aligned with the live codebase.</p>
+      <p>These examples are starter snippets for Zorro lite-C usage. For formulas and detailed API notes, use the <a href="./ARIMA_SARIMA_liteC_Function_Reference.md">function reference</a>.</p>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search by function name or source file">
+        <select id="groupFilter">
+          <option value="all">All groups</option>
+        </select>
+        <select id="typeFilter">
+          <option value="all">All return types</option>
+          <option value="void">void</option>
+          <option value="int">int</option>
+          <option value="var">var</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="stats" id="stats"></div>
+      <p class="small">The page excludes local static helpers and focuses on public package functions such as <code>aa_*</code>, <code>init_*</code>, <code>free_*</code>, <code>copy_*</code>, <code>reset_*</code>, and <code>auto_*</code>.</p>
+    </section>
+
+    <section class="grid" id="list"></section>
+  </div>
+
+  <script>
+    const SOURCE_FILES = [
+      "aa_arima_memory.c",
+      "aa_arima_math.c",
+      "aa_arima_data.c",
+      "aa_arima_transform.c",
+      "aa_arima_stats.c",
+      "aa_arima_fit.c",
+      "aa_arima_objective.c",
+      "aa_arima_optimizers.c",
+      "aa_arima_search.c",
+      "aa_arima_diagnostics.c",
+      "aa_arima_forecast.c",
+      "aa_arima_exogenous.c",
+      "aa_arima_platform.c"
+    ];
+    const RAW_BASE = "https://raw.githubusercontent.com/KoplaNum/ARIMA/main/src/litec/";
+
+    const GROUPS = [
+      { key: "memory", label: "Memory and lifecycle", test: name => /^(aa_alloc|aa_free|aa_copy|aa_shift|aa_zero|aa_prepare|aa_clear|init_|free_|reset_|copy_)/.test(name) },
+      { key: "math", label: "Math and arrays", test: name => /^(aa_sum|aa_mean|aa_variance|aa_stddev|aa_min|aa_max|aa_arg|min|aa_covariance|aa_correlation|aa_demean|aa_standardize|aa_normalize)/.test(name) },
+      { key: "data", label: "Validation and cleaning", test: name => /^(aa_validate|aa_has_invalid|aa_count_invalid|aa_remove_invalid|aa_fill_missing|aa_replace_zero|aa_clip_outliers|aa_winsorize|aa_limit_returns)/.test(name) },
+      { key: "transform", label: "Transforms and differencing", test: name => /^(aa_log_transform|aa_inverse_log_transform|aa_boxcox|aa_return_transform|aa_inverse_return|aa_difference|aa_inverse_difference|aa_seasonal_difference|aa_inverse_seasonal)/.test(name) },
+      { key: "stationarity", label: "Stationarity and correlation", test: name => /^(aa_adf|aa_kpss|aa_pp_|aa_is_stationary|aa_ndiffs|aa_nsdiffs|aa_autocovariance|aa_autocorrelation|aa_acf|aa_pacf|aa_yule_walker|aa_levinson|aa_initial_)/.test(name) },
+      { key: "fit", label: "Model fitting and scoring", test: name => /^(aa_arma_fit|aa_arima_fit|aa_sarima_fit|aa_css_fit|aa_mle_fit|aa_exact_mle_fit|aa_kalman|aa_conditional|aa_exact_loglikelihood|aa_loglikelihood|aa_aic|aa_aicc|aa_bic|aa_hqic|aa_model_score|aa_compare_ic)/.test(name) },
+      { key: "optimizer", label: "Optimizers", test: name => /^(aa_compute_gradient|aa_compute_hessian|aa_gradient|aa_check_convergence|aa_optimizer|aa_set_optimizer|aa_adam_fit|aa_bfgs_fit|aa_lbfgs_fit|aa_nelder_mead_fit)/.test(name) },
+      { key: "search", label: "AutoARIMA search", test: name => /^(aa_grid_search|aa_auto_|aa_stepwise|aa_candidate|aa_select_best|aa_try_neighbor|aa_fallback|aa_detect_seasonal|aa_seasonal_acf_score|aa_seasonal_strength)/.test(name) },
+      { key: "forecast", label: "Forecasting", test: name => /^(aa_forecast|aa_backtransform|aa_bias_adjusted|aa_train_test_split|aa_rolling_forecast|aa_walk_forward|aa_signal_|aa_position_size|aa_backtest)/.test(name) },
+      { key: "diagnostics", label: "Diagnostics", test: name => /^(aa_residual|aa_ljung|aa_box_pierce|aa_durbin|aa_jarque|aa_arch|aa_diagnostic_report)/.test(name) },
+      { key: "exogenous", label: "ARIMAX and SARIMAX", test: name => /^(aa_prepare_exogenous|aa_validate_exogenous|aa_regression_|aa_arimax|aa_sarimax)/.test(name) },
+      { key: "platform", label: "Zorro integration", test: name => /^(aa_zorro_|auto_arima_forecast|aa_cache_best_model|aa_load_cached_model|aa_reuse_previous_model|aa_refit_best_model|aa_should_refit_model|init_auto_arima_result|free_auto_arima_result|init_auto_arima_work|free_auto_arima_work|aa_prepare_auto_arima_work)/.test(name) }
+    ];
+
+    function groupFor(name) {
+      const hit = GROUPS.find(group => group.test(name));
+      return hit ? hit.label : "Other";
+    }
+
+    function parseParams(paramsText) {
+      const raw = paramsText.trim();
+      if (!raw || raw === "void") return [];
+      return raw.split(",").map(part => part.trim()).filter(Boolean).map(part => {
+        const normalized = part.replace(/\s+/g, " ").trim();
+        const pieces = normalized.split(" ");
+        const name = pieces[pieces.length - 1].replace(/^\*+/, "");
+        const type = normalized.slice(0, normalized.lastIndexOf(name)).trim() || normalized;
+        return { type, name };
+      });
+    }
+
+    function sampleArray(name) {
+      const lower = name.toLowerCase();
+      if (lower.includes("price") || lower.includes("close")) return "{100.,102.,101.,105.,107.,106.,108.,110.}";
+      if (lower.includes("coeff") || lower.includes("beta") || lower.includes("param")) return "{0.2,-0.1,0.05}";
+      if (lower.includes("residual")) return "{0.3,-0.2,0.1,-0.1,0.2,-0.05,0.1,-0.02}";
+      if (lower.includes("forecast")) return "{101.,103.,102.,106.,108.,107.,109.,111.}";
+      if (lower.includes("acf") || lower.includes("pacf")) return "{1.,0.5,-0.3,0.1}";
+      return "{10.,11.,9.,12.,8.,13.,9.,10.}";
+    }
+
+    function sampleScalar(name, type) {
+      const lower = name.toLowerCase();
+      if (type.includes("string")) return '"autoari_output.csv"';
+      if (type.includes("int")) {
+        if (lower.includes("count") || lower === "n") return "8";
+        if (lower.includes("lag")) return "3";
+        if (lower.includes("order")) return "1";
+        if (lower.includes("period") || lower === "m") return "2";
+        if (lower.includes("mode")) return "0";
+        return "1";
+      }
+      if (lower.includes("alpha")) return "0.05";
+      if (lower.includes("threshold")) return "0.01";
+      if (lower.includes("lambda")) return "0.5";
+      if (lower.includes("tick")) return "0.01";
+      if (lower.includes("risk")) return "1000.";
+      if (lower.includes("stop")) return "0.05";
+      if (lower.includes("edge")) return "0.02";
+      if (lower.includes("fraction")) return "0.7";
+      if (lower.includes("value") || lower.includes("price") || lower.includes("forecast") || lower.includes("error")) return "100.";
+      return "1.0";
+    }
+
+    function declarationFor(param, state) {
+      const { type, name } = param;
+      if (/ARIMA_MODEL\*/.test(type)) {
+        state.modelVar = state.modelVar || "model";
+        return `ARIMA_MODEL ${state.modelVar};\ninit_arima_model(&${state.modelVar});`;
+      }
+      if (/ARIMA_WORK\*/.test(type)) {
+        state.workVar = state.workVar || "work";
+        return `ARIMA_WORK ${state.workVar};\ninit_arima_work(&${state.workVar});\naa_prepare_arima_work(&${state.workVar}, 16, 4, 4, 2, 2, 8);`;
+      }
+      if (/AUTO_ARIMA_RESULT\*/.test(type)) {
+        state.autoResultVar = state.autoResultVar || "result";
+        return `AUTO_ARIMA_RESULT ${state.autoResultVar};\ninit_auto_arima_result(&${state.autoResultVar});`;
+      }
+      if (/AUTO_ARIMA_WORK\*/.test(type)) {
+        state.autoWorkVar = state.autoWorkVar || "autoWork";
+        return `AUTO_ARIMA_WORK ${state.autoWorkVar};\ninit_auto_arima_work(&${state.autoWorkVar});\naa_prepare_auto_arima_work(&${state.autoWorkVar}, 16, 4, 4);`;
+      }
+      if (/vars/.test(type) || (/var\*/.test(type) && /series|array|buffer|matrix|vector|coeff|residual|forecast|output|input|work|path|band|acf|pacf|param/i.test(name))) {
+        return `var ${name}[16] = ${sampleArray(name)};`;
+      }
+      if (/int\*/.test(type)) {
+        return `int ${name.replace(/^p/, "") || name} = 0;`;
+      }
+      if (/var\*/.test(type)) {
+        return `var ${name} = 0.;`;
+      }
+      if (/string/.test(type)) {
+        return `string ${name} = ${sampleScalar(name, type)};`;
+      }
+      if (/int/.test(type)) {
+        return `int ${name} = ${sampleScalar(name, type)};`;
+      }
+      return `var ${name} = ${sampleScalar(name, type)};`;
+    }
+
+    function callArg(param) {
+      const { type, name } = param;
+      if (/ARIMA_MODEL\*/.test(type)) {
+        return "&model";
+      }
+      if (/ARIMA_WORK\*/.test(type)) {
+        return "&work";
+      }
+      if (/AUTO_ARIMA_RESULT\*/.test(type)) {
+        return "&result";
+      }
+      if (/AUTO_ARIMA_WORK\*/.test(type)) {
+        return "&autoWork";
+      }
+      if (/vars/.test(type) || (/var\*/.test(type) && /series|array|buffer|matrix|vector|coeff|residual|forecast|output|input|work|path|band|acf|pacf|param/i.test(name))) {
+        return name;
+      }
+      if (/int\*/.test(type)) {
+        return `&${name.replace(/^p/, "") || name}`;
+      }
+      if (/var\*/.test(type)) {
+        return `&${name}`;
+      }
+      return name;
+    }
+
+    function cleanupLines(state) {
+      const lines = [];
+      if (state.autoResultVar) lines.push(`free_auto_arima_result(&${state.autoResultVar});`);
+      if (state.autoWorkVar) lines.push(`free_auto_arima_work(&${state.autoWorkVar});`);
+      if (state.modelVar) lines.push(`free_arima_model(&${state.modelVar});`);
+      if (state.workVar) lines.push(`free_arima_work(&${state.workVar});`);
+      return lines;
+    }
+
+    function generateExample(fn) {
+      const params = parseParams(fn.params);
+      const state = { modelVar: "", workVar: "", autoResultVar: "", autoWorkVar: "" };
+      const declarations = [];
+      for (const param of params) {
+        const line = declarationFor(param, state);
+        if (line && !declarations.includes(line)) declarations.push(line);
+      }
+      const args = params.map(callArg).join(", ");
+      const resultDecl = fn.returnType === "void" ? "" : (fn.returnType.includes("int") ? "int result" : "var result");
+      const callLine = fn.returnType === "void"
+        ? `${fn.name}(${args});`
+        : `result = ${fn.name}(${args});`;
+      const lines = [
+        `#include "aa_arima_all.c"`,
+        "",
+        "function run()",
+        "{",
+        "  if(!is(INITRUN)) return;",
+        ""
+      ];
+      for (const block of declarations) {
+        for (const line of block.split("\n")) lines.push(`  ${line}`);
+      }
+      if (declarations.length) lines.push("");
+      if (fn.returnType !== "void") lines.push(`  ${resultDecl};`);
+      lines.push(`  ${callLine}`);
+      if (fn.returnType === "int") lines.push(`  printf("${fn.name} => %i", result);`);
+      else if (fn.returnType !== "void") lines.push(`  printf("${fn.name} => %f", result);`);
+      for (const line of cleanupLines(state)) lines.push(`  ${line}`);
+      lines.push("}");
+      return lines.join("\n");
+    }
+
+    async function fetchSource(file) {
+      const candidates = ["../src/litec/" + file, RAW_BASE + file];
+      for (const candidate of candidates) {
+        try {
+          const response = await fetch(candidate);
+          if (response.ok) {
+            return { file: "src/litec/" + file, text: await response.text() };
+          }
+        } catch (_) {
+        }
+      }
+      throw new Error("Unable to load source file: " + file);
+    }
+
+    async function loadFunctions() {
+      const texts = await Promise.all(SOURCE_FILES.map(fetchSource));
+      const seen = new Set();
+      const functions = [];
+      const regex = /(^|\n)(?:static\s+)?([A-Za-z_][\w\s\*]*?)\s+([A-Za-z_][\w]*)\s*\(([^\)]*)\)\s*\{/g;
+      for (const source of texts) {
+        let match;
+        while ((match = regex.exec(source.text)) !== null) {
+          const returnType = match[2].replace(/\s+/g, " ").trim();
+          const name = match[3].trim();
+          const params = match[4].trim();
+          if (!/^(aa_|init_|free_|copy_|reset_|auto_)/.test(name)) continue;
+          if (seen.has(name)) continue;
+          seen.add(name);
+          functions.push({
+            name,
+            returnType,
+            params,
+            file: source.file,
+            group: groupFor(name)
+          });
+        }
+      }
+      functions.sort((a, b) => a.name.localeCompare(b.name));
+      return functions;
+    }
+
+    function renderStats(functions) {
+      const stats = document.getElementById("stats");
+      const groups = [...new Set(functions.map(fn => fn.group))].length;
+      stats.innerHTML = [
+        `<div class="stat"><strong>${functions.length}</strong> current public functions</div>`,
+        `<div class="stat"><strong>${groups}</strong> groups</div>`,
+        `<div class="stat"><a href="./ARIMA_SARIMA_liteC_Function_Reference.md">Formula reference</a></div>`
+      ].join("");
+    }
+
+    function renderFilters(functions) {
+      const groupFilter = document.getElementById("groupFilter");
+      const groups = [...new Set(functions.map(fn => fn.group))].sort();
+      for (const group of groups) {
+        const option = document.createElement("option");
+        option.value = group;
+        option.textContent = group;
+        groupFilter.appendChild(option);
+      }
+    }
+
+    function renderList(functions) {
+      const list = document.getElementById("list");
+      const q = document.getElementById("search").value.trim().toLowerCase();
+      const group = document.getElementById("groupFilter").value;
+      const type = document.getElementById("typeFilter").value;
+      const filtered = functions.filter(fn => {
+        const matchesText = !q || fn.name.toLowerCase().includes(q) || fn.file.toLowerCase().includes(q);
+        const matchesGroup = group === "all" || fn.group === group;
+        const matchesType = type === "all" || fn.returnType === type;
+        return matchesText && matchesGroup && matchesType;
+      });
+      list.innerHTML = filtered.map(fn => `
+        <article class="fn" id="${fn.name.toLowerCase()}">
+          <h3>${fn.name}</h3>
+          <div class="meta"><code>${fn.returnType} ${fn.name}(${fn.params || "void"})</code></div>
+          <div class="tags">
+            <span class="tag">${fn.group}</span>
+            <span class="tag">${fn.returnType}</span>
+            <span class="tag">${fn.file}</span>
+          </div>
+          <pre><code>${escapeHtml(generateExample(fn))}</code></pre>
+        </article>
+      `).join("");
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+    }
+
+    async function main() {
+      const functions = await loadFunctions();
+      renderStats(functions);
+      renderFilters(functions);
+      renderList(functions);
+      document.getElementById("search").addEventListener("input", () => renderList(functions));
+      document.getElementById("groupFilter").addEventListener("change", () => renderList(functions));
+      document.getElementById("typeFilter").addEventListener("change", () => renderList(functions));
+    }
+
+    main().catch(error => {
+      document.getElementById("list").innerHTML = `<article class="fn"><h3>Failed to load examples</h3><pre><code>${String(error)}</code></pre></article>`;
+    });
+  </script>
+</body>
+</html>
