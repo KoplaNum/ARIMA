@@ -12,13 +12,20 @@ typedef char* string;
 #define M_PI 3.14159265358979323846
 #endif
 
+#ifndef abs
 #define abs(x) fabs(x)
+#endif
+#ifndef max
 #define max(a,b) ((a) > (b) ? (a) : (b))
+#endif
+#ifndef min
 #define min(a,b) ((a) < (b) ? (a) : (b))
+#endif
 #define clamp(v,lo,hi) ((v) < (lo) ? (lo) : ((v) > (hi) ? (hi) : (v)))
 #define fix0(x) (fabs(x) < 1e-10 ? ((x) < 0 ? -1e-10 : 1e-10) : (x))
 #define invalid(x) ((x) != (x) || (x) > DBL_MAX || (x) < -DBL_MAX)
 #define ifelse(a,b,c) ((a) ? (b) : (c))
+#define roundto(x,step) ((step) > 0 ? round((x)/(step))*(step) : (x))
 
 #define LINE 0
 #define BLUE 1
@@ -55,7 +62,5 @@ void enterLong(void)
 void enterShort(void)
 {
 }
-
-var aa_round_to_tick_size(var price,var tickSize);
 
 #include "../../src/litec/aa_arima_all.c"

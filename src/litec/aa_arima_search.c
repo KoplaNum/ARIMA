@@ -232,7 +232,7 @@ var aa_seasonal_strength(vars seriesValues,int sampleCount,int seasonalPeriod)
   residualCount = 0;
   for(sampleIndex=seasonalPeriod;sampleIndex<sampleCount;sampleIndex++) {
     seasonalReference = seriesValues[sampleIndex-seasonalPeriod];
-    residualVariance += aa_square(seriesValues[sampleIndex]-seasonalReference);
+    residualVariance += (seriesValues[sampleIndex]-seasonalReference)*(seriesValues[sampleIndex]-seasonalReference);
     residualCount++;
   }
 

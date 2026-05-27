@@ -59,7 +59,7 @@ var aa_autocovariance(vars seriesValues,int sampleCount,int lagOrder)
 
 var aa_autocorrelation(vars seriesValues,int sampleCount,int lagOrder)
 {
-  return aa_safe_div(aa_autocovariance(seriesValues,sampleCount,lagOrder),aa_autocovariance(seriesValues,sampleCount,0));
+  return aa_autocovariance(seriesValues,sampleCount,lagOrder)/fix0(aa_autocovariance(seriesValues,sampleCount,0));
 }
 
 void aa_acf(vars seriesValues,int sampleCount,int maxLag,vars outputAcf)
@@ -91,7 +91,7 @@ void aa_levinson_durbin(vars autocorrelationValues,int orderCount,vars arCoeffic
     reflectionCoefficient = autocorrelationValues[orderIndex+1];
     for(coefficientIndex=0;coefficientIndex<orderIndex;coefficientIndex++)
       reflectionCoefficient -= arCoefficients[coefficientIndex]*autocorrelationValues[orderIndex-coefficientIndex];
-    reflectionCoefficient = aa_safe_div(reflectionCoefficient,predictionError);
+    reflectionCoefficient = reflectionCoefficient/fix0(predictionError);
     workspace[orderIndex] = reflectionCoefficient;
     for(coefficientIndex=0;coefficientIndex<orderIndex;coefficientIndex++) {
       previousCoefficient = arCoefficients[coefficientIndex];
@@ -231,7 +231,7 @@ var aa_ar_root_modulus(vars arCoefficients,int arOrder)
   for(coefficientIndex=0;coefficientIndex<arOrder;coefficientIndex++)
     absoluteCoefficientSum += abs(arCoefficients[coefficientIndex]);
 
-  return aa_safe_div(1.,max(absoluteCoefficientSum,AA_EPS));
+  return 1./fix0(max(absoluteCoefficientSum,AA_EPS));
 }
 
 var aa_ma_root_modulus(vars maCoefficients,int maOrder)
@@ -246,7 +246,7 @@ var aa_ma_root_modulus(vars maCoefficients,int maOrder)
   for(coefficientIndex=0;coefficientIndex<maOrder;coefficientIndex++)
     absoluteCoefficientSum += abs(maCoefficients[coefficientIndex]);
 
-  return aa_safe_div(1.,max(absoluteCoefficientSum,AA_EPS));
+  return 1./fix0(max(absoluteCoefficientSum,AA_EPS));
 }
 
 int aa_is_stationary_ar(vars arCoefficients,int arOrder)
@@ -324,7 +324,7 @@ int aa_coefficients_are_valid(vars coefficientArray,int coefficientCount)
 
 var aa_min_root_modulus(vars coefficientArray,int coefficientCount)
 {
-  return aa_safe_div(1.,max(aa_sum(coefficientArray,coefficientCount),AA_EPS));
+  return 1./fix0(max(aa_sum(coefficientArray,coefficientCount),AA_EPS));
 }
 
 int aa_calculate_d(vars seriesValues,int sampleCount)

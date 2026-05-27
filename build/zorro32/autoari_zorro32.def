@@ -72,13 +72,6 @@ EXPORTS
   aa_position_size_from_forecast
   aa_position_size_from_confidence
   aa_backtest_forecast_signal
-  aa_max_int
-  aa_min_int
-  aa_abs
-  aa_square
-  aa_safe_div
-  aa_safe_log
-  aa_safe_sqrt
   aa_sum
   aa_mean
   aa_variance
@@ -147,7 +140,6 @@ EXPORTS
   aa_zorro_trade_from_forecast
   init_auto_arima_result
   free_auto_arima_result
-  aa_round_to_tick_size
   init_auto_arima_work
   free_auto_arima_work
   aa_prepare_auto_arima_work

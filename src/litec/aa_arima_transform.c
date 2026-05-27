@@ -9,7 +9,7 @@ void aa_log_transform(vars inputSeries,int sampleCount,vars outputSeries)
     return;
 
   for(sampleIndex=0;sampleIndex<sampleCount;sampleIndex++)
-    outputSeries[sampleIndex] = aa_safe_log(inputSeries[sampleIndex]);
+    outputSeries[sampleIndex] = log(max(inputSeries[sampleIndex],AA_EPS));
 }
 
 void aa_inverse_log_transform(vars inputSeries,int sampleCount,vars outputSeries)
@@ -37,7 +37,7 @@ void aa_boxcox_transform(vars inputSeries,int sampleCount,var lambdaValue,vars o
 
   for(sampleIndex=0;sampleIndex<sampleCount;sampleIndex++) {
     if(abs(lambdaValue) <= 0.000001)
-      outputSeries[sampleIndex] = aa_safe_log(inputSeries[sampleIndex]);
+      outputSeries[sampleIndex] = log(max(inputSeries[sampleIndex],AA_EPS));
     else
       outputSeries[sampleIndex] = (pow(max(inputSeries[sampleIndex],AA_EPS),lambdaValue)-1.)/lambdaValue;
   }
@@ -71,7 +71,7 @@ void aa_return_transform(vars closeSeries,int sampleCount,vars returnSeries)
     return;
 
   for(sampleIndex=1;sampleIndex<sampleCount;sampleIndex++)
-    returnSeries[sampleIndex-1] = aa_safe_div(closeSeries[sampleIndex],closeSeries[sampleIndex-1])-1.;
+    returnSeries[sampleIndex-1] = closeSeries[sampleIndex]/fix0(closeSeries[sampleIndex-1])-1.;
 }
 
 void aa_inverse_return_forecast(var lastPrice,vars returnForecast,int forecastHorizon,vars priceForecast)

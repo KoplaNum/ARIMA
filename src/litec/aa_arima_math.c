@@ -124,47 +124,6 @@ static int aa_ols_fit(vars responseSeries,vars designMatrix,int rowCount,int col
   return aa_solve_linear_system(normalMatrix,normalVector,columnCount,coefficientVector,regressionWorkspace + columnCount*columnCount + columnCount);
 }
 
-int aa_max_int(int leftValue,int rightValue)
-{
-  return ifelse(leftValue > rightValue,leftValue,rightValue);
-}
-
-int aa_min_int(int leftValue,int rightValue)
-{
-  return ifelse(leftValue < rightValue,leftValue,rightValue);
-}
-
-var aa_abs(var inputValue)
-{
-  return abs(inputValue);
-}
-
-var aa_square(var inputValue)
-{
-  return inputValue*inputValue;
-}
-
-var aa_safe_div(var numerator,var denominator)
-{
-  return numerator/fix0(denominator);
-}
-
-var aa_safe_log(var inputValue)
-{
-  if(inputValue < AA_EPS)
-    inputValue = AA_EPS;
-
-  return log(inputValue);
-}
-
-var aa_safe_sqrt(var inputValue)
-{
-  if(inputValue < 0.)
-    inputValue = 0.;
-
-  return sqrt(inputValue);
-}
-
 var aa_sum(vars dataSeries,int sampleCount)
 {
   int sampleIndex;
@@ -200,14 +159,14 @@ var aa_variance(vars dataSeries,int sampleCount)
   meanValue = aa_mean(dataSeries,sampleCount);
   varianceSum = 0.;
   for(sampleIndex=0;sampleIndex<sampleCount;sampleIndex++)
-    varianceSum += aa_square(dataSeries[sampleIndex]-meanValue);
+    varianceSum += (dataSeries[sampleIndex]-meanValue)*(dataSeries[sampleIndex]-meanValue);
 
   return varianceSum/(var)sampleCount;
 }
 
 var aa_stddev(vars dataSeries,int sampleCount)
 {
-  return aa_safe_sqrt(aa_variance(dataSeries,sampleCount));
+  return sqrt(max(aa_variance(dataSeries,sampleCount),0.));
 }
 
 var aa_covariance(vars leftSeries,vars rightSeries,int sampleCount)
@@ -231,9 +190,8 @@ var aa_covariance(vars leftSeries,vars rightSeries,int sampleCount)
 
 var aa_correlation(vars leftSeries,vars rightSeries,int sampleCount)
 {
-  return aa_safe_div(
-    aa_covariance(leftSeries,rightSeries,sampleCount),
-    aa_stddev(leftSeries,sampleCount)*aa_stddev(rightSeries,sampleCount));
+  return aa_covariance(leftSeries,rightSeries,sampleCount)
+    /fix0(aa_stddev(leftSeries,sampleCount)*aa_stddev(rightSeries,sampleCount));
 }
 
 var aa_min(vars dataSeries,int sampleCount)

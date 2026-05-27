@@ -164,7 +164,7 @@ void aa_bias_adjusted_backtransform(vars transformedForecastPath,vars forecastSt
 
   if(transformMode == AA_TRANSFORM_LOG) {
     for(horizonIndex=0;horizonIndex<forecastHorizon;horizonIndex++)
-      biasAdjustedForecastPath[horizonIndex] = exp(transformedForecastPath[horizonIndex] + 0.5*aa_square(forecastStandardErrors[horizonIndex]));
+      biasAdjustedForecastPath[horizonIndex] = exp(transformedForecastPath[horizonIndex] + 0.5*forecastStandardErrors[horizonIndex]*forecastStandardErrors[horizonIndex]);
   } else {
     aa_backtransform_forecast(transformedForecastPath,forecastHorizon,transformMode,boxCoxLambda,biasAdjustedForecastPath);
   }
@@ -291,12 +291,12 @@ var aa_directional_accuracy(vars actualSeries,vars forecastSeries,int sampleCoun
     comparisonCount++;
   }
 
-  return aa_safe_div((var)hitCount,(var)comparisonCount);
+  return (var)hitCount/fix0((var)comparisonCount);
 }
 
 var aa_forecast_return(var lastObservedValue,var pointForecast)
 {
-  return aa_safe_div(pointForecast-lastObservedValue,lastObservedValue);
+  return (pointForecast-lastObservedValue)/fix0(lastObservedValue);
 }
 
 var aa_forecast_edge(var lastObservedValue,var pointForecast,var transactionCost)
@@ -306,7 +306,7 @@ var aa_forecast_edge(var lastObservedValue,var pointForecast,var transactionCost
 
 var aa_forecast_zscore(var pointForecast,var forecastStandardError,var lastObservedValue)
 {
-  return aa_safe_div(pointForecast-lastObservedValue,forecastStandardError);
+  return (pointForecast-lastObservedValue)/fix0(forecastStandardError);
 }
 
 int aa_signal_from_forecast(var lastObservedValue,var pointForecast,var signalThreshold)
@@ -339,7 +339,7 @@ int aa_signal_from_directional_accuracy(var directionalAccuracy,var minimumAccur
 
 var aa_position_size_from_forecast(var forecastEdge,var riskBudget,var stopDistance)
 {
-  return aa_safe_div(riskBudget*abs(forecastEdge),stopDistance);
+  return riskBudget*abs(forecastEdge)/fix0(stopDistance);
 }
 
 var aa_position_size_from_confidence(var forecastConfidenceZScore,var basePositionSize)

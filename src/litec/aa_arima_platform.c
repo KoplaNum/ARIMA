@@ -156,6 +156,7 @@ int aa_zorro_get_close_series(vars closeSeries,int sampleCount)
 int aa_zorro_forecast_current_asset(int sampleCount,int maxArOrder,int maxMaOrder,var tickSize,ARIMA_WORK* work,ARIMA_MODEL* model)
 {
   vars closeSeries = series(priceClose(0));
+  var nextForecast;
 
   if(!closeSeries)
     return 0;
@@ -163,7 +164,10 @@ int aa_zorro_forecast_current_asset(int sampleCount,int maxArOrder,int maxMaOrde
   if(!aa_grid_search_arima(closeSeries,sampleCount,maxArOrder,2,maxMaOrder,AA_SCORE_AICC,work,model))
     return 0;
 
-  model->forecast = aa_round_to_tick_size(aa_forecast_one_step(model,closeSeries,sampleCount,work),tickSize);
+  nextForecast = aa_forecast_one_step(model,closeSeries,sampleCount,work);
+  if(tickSize > 0.)
+    nextForecast = roundto(nextForecast,tickSize);
+  model->forecast = nextForecast;
   return 1;
 }
 
@@ -230,14 +234,6 @@ void free_auto_arima_result(AUTO_ARIMA_RESULT* result)
   init_auto_arima_result(result);
 }
 
-var aa_round_to_tick_size(var price,var tickSize)
-{
-  if(tickSize <= 0.)
-    return price;
-
-  return round(price/tickSize)*tickSize;
-}
-
 void init_auto_arima_work(AUTO_ARIMA_WORK* work)
 {
   if(work)
@@ -261,6 +257,7 @@ int aa_prepare_auto_arima_work(AUTO_ARIMA_WORK* work,int sampleCount,int maxArOr
 int auto_arima_forecast_with_work(vars closeSeries,int sampleCount,var tickSize,int maxArOrder,int maxMaOrder,AUTO_ARIMA_WORK* work,AUTO_ARIMA_RESULT* result)
 {
   ARIMA_MODEL model;
+  var nextForecast;
 
   if(!closeSeries || !work || !result)
     return 0;
@@ -288,7 +285,10 @@ int auto_arima_forecast_with_work(vars closeSeries,int sampleCount,var tickSize,
   result->converged = model.converged;
   result->sse = model.sse;
   result->aicc = model.aicc;
-  result->forecast = aa_round_to_tick_size(aa_forecast_one_step(&model,closeSeries,sampleCount,&work->core),tickSize);
+  nextForecast = aa_forecast_one_step(&model,closeSeries,sampleCount,&work->core);
+  if(tickSize > 0.)
+    nextForecast = roundto(nextForecast,tickSize);
+  result->forecast = nextForecast;
 
   if(result->ar && model.ar && model.p > 0)
     aa_copy_vars(result->ar,model.ar,model.p);

@@ -141,11 +141,11 @@ var aa_durbin_watson_test(vars residualSeries,int sampleCount)
     return 0.;
 
   for(sampleIndex=1;sampleIndex<sampleCount;sampleIndex++)
-    numerator += aa_square(residualSeries[sampleIndex]-residualSeries[sampleIndex-1]);
+    numerator += (residualSeries[sampleIndex]-residualSeries[sampleIndex-1])*(residualSeries[sampleIndex]-residualSeries[sampleIndex-1]);
   for(sampleIndex=0;sampleIndex<sampleCount;sampleIndex++)
-    denominator += aa_square(residualSeries[sampleIndex]);
+    denominator += residualSeries[sampleIndex]*residualSeries[sampleIndex];
 
-  return aa_safe_div(numerator,denominator);
+  return numerator/fix0(denominator);
 }
 
 var aa_jarque_bera_stat(vars residualSeries,int sampleCount)
@@ -175,7 +175,7 @@ var aa_jarque_bera_stat(vars residualSeries,int sampleCount)
 
   skewnessAccumulator /= (var)sampleCount;
   kurtosisAccumulator /= (var)sampleCount;
-  return (var)sampleCount*(skewnessAccumulator*skewnessAccumulator + aa_square(kurtosisAccumulator-3.)*0.25)/6.;
+  return (var)sampleCount*(skewnessAccumulator*skewnessAccumulator + (kurtosisAccumulator-3.)*(kurtosisAccumulator-3.)*0.25)/6.;
 }
 
 var aa_jarque_bera_pvalue(var testStatistic)
@@ -241,8 +241,8 @@ var aa_arch_lm_stat(vars residualSeries,int sampleCount,int lagCount)
     fittedValue = 0.;
     for(columnIndex=0;columnIndex<regressionCols;columnIndex++)
       fittedValue += designMatrix[rowIndex*regressionCols+columnIndex]*regressionCoefficients[columnIndex];
-    totalSumSquares += aa_square(responseSeries[rowIndex]-responseMean);
-    residualSumSquares += aa_square(responseSeries[rowIndex]-fittedValue);
+    totalSumSquares += (responseSeries[rowIndex]-responseMean)*(responseSeries[rowIndex]-responseMean);
+    residualSumSquares += (responseSeries[rowIndex]-fittedValue)*(responseSeries[rowIndex]-fittedValue);
   }
 
   aa_free_vars(responseSeries);

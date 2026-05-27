@@ -1,21 +1,14 @@
 @echo off
 setlocal
 
-if "%TCC_EXE%"=="" set TCC_EXE=C:\tcc\tcc.exe
+set "SCRIPT_DIR=%~dp0"
+for %%I in ("%SCRIPT_DIR%..\..") do set "REPO_ROOT=%%~fI"
 
-if not exist "%TCC_EXE%" (
-  echo TCC compiler not found: %TCC_EXE%
-  echo Set TCC_EXE to your 32-bit tcc.exe path and run again.
-  exit /b 1
-)
+call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars32.bat"
+if errorlevel 1 exit /b 1
 
-if not exist "..\..\bin\zorro32" mkdir "..\..\bin\zorro32"
+cd /d C:\Users\OONN\Zorro
+set "INCLUDE=%INCLUDE%;include"
 
-"%TCC_EXE%" -shared -o "..\..\bin\zorro32\AutoAri32.dll" "autoari_zorro32_wrapper.c" "autoari_zorro32.def"
-if errorlevel 1 (
-  echo DLL build failed.
-  exit /b 1
-)
-
-echo Built ..\..\bin\zorro32\AutoAri32.dll
-exit /b 0
+cl /TC /Fo"Cache\\" /EHsc /fp:strict /Zc:wchar_t /Gd /MT /O2 /D "WIN32" /D "_WINDLL" /D "_MBCS" "%REPO_ROOT%\build\zorro32\autoari_zorro32_wrapper.c" /link /DLL /NOLOGO /DEF:"%REPO_ROOT%\build\zorro32\autoari_zorro32.def" /IMPLIB:"%REPO_ROOT%\build\zorro32\AutoAri32.lib" /OUT:"%REPO_ROOT%\build\zorro32\AutoAri32.dll" > Log\compiler.log 2>&1
+exit /b %errorlevel%
