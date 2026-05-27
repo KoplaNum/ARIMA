@@ -1,0 +1,22 @@
+# Build intermediates
+*.obj
+*.o
+*.pdb
+*.ilk
+*.exe
+
+# IDE / editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo

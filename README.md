@@ -4,9 +4,11 @@ Lightweight ARIMA / SARIMA library implemented in lite-C, published with a mathe
 
 ## Repository Contents
 
-- `src/litec/`: source implementation files and shared type definitions
+- `src/litec/`: source implementation files and shared type definitions (C99, Zorro-compatible)
+- `src/cpp64/`: 64-bit C++ additive entry point for Zorro64
 - `build/zorro32/AutoAri32.dll`: prebuilt full-engine 32-bit DLL for use with `Zorro.exe` 32-bit strategies
-- `build/zorro32/`: reproducible wrapper, export definition, and batch build script for rebuilding the DLL
+- `build/zorro64/AutoAri64.dll`: prebuilt full-engine 64-bit DLL for use with `Zorro64.exe` 64-bit strategies
+- `build/zorro32/` and `build/zorro64/`: reproducible wrappers, export definitions, and batch build scripts
 - `README.md`: publication-ready function reference with mathematical forms
 - `LICENSE`: MIT license
 
@@ -15,15 +17,59 @@ Lightweight ARIMA / SARIMA library implemented in lite-C, published with a mathe
 - Documented library functions covered in the reference: **219**
 - Source path base: `src/litec/`
 
+## Quick Start
+
+### 32-bit Zorro
+Copy `build/zorro32/AutoAri32.dll` to your strategy folder and import the functions you need.
+
+### 64-bit Zorro
+Copy `build/zorro64/AutoAri64.dll` to your strategy folder and import the functions you need.
+
+## Building from Source
+
+### 64-bit Build
+
+Prerequisites:
+- Microsoft Visual C++ 2019 or later (or Visual Studio Build Tools)
+- 64-bit toolchain (`vcvars64.bat`)
+
+Steps:
+1. Open "x64 Native Tools Command Prompt for VS 2022" (or your VS version).
+2. Navigate to `build/zorro64/`.
+3. Run `build_autoari64_zorro64.bat`.
+
+The script will produce `AutoAri64.dll`, `AutoAri64.lib`, and `AutoAri64.exp`.
+
+**Note:** Update the path to `vcvars64.bat` inside the batch file if your Visual Studio is installed in a non-default location.
+
+### 32-bit Build
+
+Navigate to `build/zorro32/` and run `build_autoari32.bat`.
+
+## Architecture
+
+The library maintains a single source of truth in `src/litec/` (C99 modules). The 64-bit variant is intentionally thin:
+
+- `src/cpp64/aa_arima_all_64.cpp` includes the lite-C modules inside an `extern "C"` block.
+- This ensures the 64-bit C++ build behaves identically to the validated 32-bit lite-C version.
+- No logic is duplicated or forked.
+
 ## Function Reference
 
 The remainder of this document is the full mathematical and API reference for the documented lite-C library.
 
 ## Zorro 32-bit DLL
 
-- `bin/zorro32/AutoAri32.dll` is the prebuilt **full library engine DLL**.
+- `build/zorro32/AutoAri32.dll` is the prebuilt **full library engine DLL**.
 - It is intended for use from **32-bit Zorro.exe lite-C strategies**.
 - Rebuild inputs are published under `build/zorro32/` so other users can reproduce the DLL from source.
+
+## Zorro 64-bit DLL
+
+- `build/zorro64/AutoAri64.dll` is the prebuilt **full library engine DLL**.
+- It is intended for use from **64-bit Zorro64.exe C++ strategies**.
+- Rebuild inputs are published under `build/zorro64/` so other users can reproduce the DLL from source.
+- The DLL contains the same 220+ exported functions as the 32-bit version.
 
 ## Module Index
 
