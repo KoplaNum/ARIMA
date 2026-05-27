@@ -1,4 +1,4 @@
-# AutoAri ARIMA / SARIMA lite-C
+# Documentation
 
 GitHub Pages entry point for the AutoAri package.
 
