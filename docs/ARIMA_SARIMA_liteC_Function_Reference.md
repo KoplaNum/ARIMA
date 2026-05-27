@@ -293,10 +293,9 @@ Professional GitHub reference for the documented ARIMA / SARIMA lite-C API. This
 
 ## 1. Memory and Pointer Management Functions
 
-**Optimization requirement:** these functions define memory ownership rules for the whole project. Use them everywhere instead of direct scattered `malloc()` / `free()` calls, except inside the low-level memory helpers themselves.
 
 These functions have operation formulas rather than statistical formulas.
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_alloc_vars
@@ -729,9 +728,8 @@ Reset scores/status and optionally zero coefficient arrays without freeing memor
 
 ## 2. Basic Math and Array Utilities
 
-**Optimization requirement:** use Zorro/lite-C built-ins such as `abs()`, `min()`, `max()`, `clamp()`, `fix0()`, `sqrt()`, and `log()` where applicable. Do not recreate built-ins unless a safety wrapper or consistent function interface is needed.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_argmax
@@ -1170,9 +1168,8 @@ Compute mean first, then sum squared deviations.
 
 ## 3. Input Validation and Data Cleaning
 
-**Optimization requirement:** combine validation and counting in one pass when possible. Do not copy or clean data unless the caller needs a new buffer; prefer returning status flags and indexes.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_clip_outliers
@@ -1546,9 +1543,8 @@ Estimate lower/upper percentiles, then clamp values. Requires either sorting cop
 
 ## 4. Transformations and Differencing
 
-**Optimization requirement:** write transformed data into caller-provided or `ARIMA_WORK` buffers. Do not allocate temporary arrays inside differencing functions.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_boxcox_lambda
@@ -2078,9 +2074,8 @@ Apply seasonal difference `D` times into work buffers. Return final length.
 
 ## 5. Stationarity and Differencing Selection
 
-**Optimization requirement:** reuse variance, ACF, regression, and differencing helpers. Cache test results when the same window is checked repeatedly.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_adf_pvalue_approx
@@ -2629,9 +2624,8 @@ Return 1 when unit root is rejected.
 
 ## 6. Autocorrelation and Partial Autocorrelation
 
-**Optimization requirement:** compute mean once, reuse autocovariance results, and store ACF/PACF output in work buffers. PACF must reuse ACF and Levinson-Durbin rather than recomputing correlations repeatedly.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_acf
@@ -2980,9 +2974,8 @@ Build Toeplitz autocovariance matrix from `gamma_k`; solve for AR coefficients.
 
 ## 7. AR / MA Validity and Stability
 
-**Optimization requirement:** reuse polynomial/root helpers after they exist. Until root solving is implemented, use coefficient clamps only as a fallback, not as the final stationarity/invertibility test.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_ar_root_modulus
@@ -3286,9 +3279,8 @@ Generic polynomial root-modulus helper for AR or MA stability checks.
 
 ## 8. ARMA / ARIMA / SARIMA Fitting Functions
 
-**Optimization requirement:** all fitting functions must accept `ARIMA_WORK* Work`; no fitting routine may allocate inside the model-search loop. ARIMA and SARIMA fitting must reuse the ARMA residual recursion instead of duplicating it.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_arima_fit
@@ -3552,9 +3544,8 @@ Apply ordinary and seasonal differencing, then fit ARMA with ordinary and season
 
 ## 9. Optimizer Functions
 
-**Optimization requirement:** optimizer state arrays, gradients, Hessians, and step buffers must be preallocated in `ARIMA_WORK`. Reuse gradient and likelihood functions across Adam, BFGS, L-BFGS, and Nelder-Mead.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_adam_fit
@@ -4035,9 +4026,8 @@ Set convergence tolerance.
 
 ## 10. Likelihood and Model Scoring
 
-**Optimization requirement:** scoring functions must be allocation-free, pure calculations on already-computed residual/SSE/log-likelihood values. Reuse the same parameter-count function for AIC, AICc, BIC, and HQIC.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_aic_score
@@ -4383,9 +4373,8 @@ Switch on `ScoreMode` and return the chosen criterion.
 
 ## 11. AutoARIMA Search Functions
 
-**Optimization requirement:** search functions must reuse candidate buffers and cached model scores. Stepwise search should avoid full grid search unless explicitly requested.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_auto_arima_search
@@ -4779,9 +4768,8 @@ Check order bounds and sample-size feasibility.
 
 ## 12. Seasonal ARIMA / SARIMA Functions
 
-**Optimization requirement:** seasonal functions must reuse ordinary differencing, residual recursion, scoring, and search helpers wherever possible. Only seasonal lag construction should be new.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_auto_sarima_search
@@ -5048,9 +5036,8 @@ Stepwise SARIMA search over ordinary and seasonal neighbors.
 
 ## 13. ARIMAX / SARIMAX Functions
 
-**Optimization requirement:** regression and exogenous matrix buffers must be owned by `ARIMA_WORK`. Reuse existing matrix/regression helpers if added; avoid rebuilding design matrices when only the newest row changed.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_arimax_fit
@@ -5354,9 +5341,8 @@ Check all columns/rows for valid values and matching length.
 
 ## 14. Forecasting Functions
 
-**Optimization requirement:** forecast functions must reuse fitted residuals, coefficients, and differencing state from `ARIMA_MODEL`/`ARIMA_WORK`. Multi-step forecasts should reuse one-step recursion logic in a loop.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_backtransform_forecast
@@ -5683,9 +5669,8 @@ Reverse ordinary differencing for each horizon using original history.
 
 ## 15. Residual Diagnostics
 
-**Optimization requirement:** residual diagnostics must reuse residual mean, variance, and ACF buffers. Do not recompute residuals when the fitted model already has them stored.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_arch_lm_pvalue
@@ -6400,9 +6385,8 @@ Call Ljung-Box test with chosen alpha and max lag.
 
 ## 16. Model Reporting and File I/O
 
-**Optimization requirement:** reporting functions should not affect model state. File I/O must be optional and kept outside inner optimization loops.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_load_model_from_file
@@ -6673,9 +6657,8 @@ Serialize scalar fields and coefficient arrays with `file_append()` or CSV forma
 
 ## 17. Model Caching and Reuse
 
-**Optimization requirement:** caching functions are mandatory for trading/backtesting performance. Prefer reusing the last best model and refitting only when the window, asset, timeframe, or error threshold changes.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_cache_best_model
@@ -6918,9 +6901,8 @@ Return 1 when bars since last fit or forecast error exceed thresholds.
 
 ## 18. Walk-Forward and Forecast Evaluation
 
-**Optimization requirement:** walk-forward functions must reuse one `ARIMA_WORK` object across all rolling windows. Avoid full AutoARIMA refits on every step unless explicitly requested.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_directional_accuracy
@@ -7209,9 +7191,8 @@ Refit every `RefitInterval` bars, otherwise reuse/refit cached model.
 
 ## 19. Trading Signal Functions
 
-**Optimization requirement:** signal functions should be allocation-free and use already-computed forecasts, bands, and diagnostics. Keep model fitting separate from trading decision logic.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_backtest_forecast_signal
@@ -7521,9 +7502,8 @@ Use `if/else`, not ternary. Return long/short/flat signal.
 
 ## 20. Zorro Integration Functions
 
-**Optimization requirement:** use Zorro built-ins for price series, plotting, logging, and strategy lifecycle. Allocate work memory in initialization, reuse during bars, and release on exit.
 
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_zorro_forecast_current_asset
@@ -7730,10 +7710,9 @@ Convert model forecast to signal, then call Zorro entry/exit functions outside l
 
 ## 21. Current AutoARIMA Compatibility Functions
 
-**Optimization requirement:** compatibility wrappers should call the optimized work-memory versions internally. Keep old signatures only as a convenience layer, not as the performance path.
 
 These are names already present in the current code or optimized work-memory version.
-| Function / object | LaTeX formula code | How to construct in optimized lite-C (reuse + built-ins required) |
+| Function / object | LaTeX formula code | lite-C construction notes |
 |---|---|---|
 
 ### aa_prepare_auto_arima_work
